@@ -50,73 +50,63 @@ function initScrollEffects() {
 
 function initNavigation() {
   const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
   const links = document.getElementById('navLinks');
   const backdrop = document.getElementById('navBackdrop');
-  const linksHome = links.parentElement;
-  let scrollLockY = 0;
+  let blockTouchMove = null;
 
-  const isMobileNav = () => window.innerWidth <= 1024;
-
-  const portalMenuToBody = (shouldPortal) => {
-    if (!isMobileNav()) {
-      if (links.parentElement !== linksHome) {
-        linksHome.appendChild(links);
-      }
-      return;
-    }
-
-    if (shouldPortal && links.parentElement !== document.body) {
-      document.body.appendChild(links);
-    } else if (!shouldPortal && links.parentElement === document.body) {
-      linksHome.appendChild(links);
-    }
-  };
+  const isMobileNav = () => window.matchMedia('(max-width: 1024px)').matches;
 
   const lockPageScroll = () => {
-    scrollLockY = window.scrollY;
-    document.body.style.top = `-${scrollLockY}px`;
+    document.documentElement.classList.add('nav-open');
     document.body.classList.add('nav-open');
+
+    blockTouchMove = (event) => {
+      if (menu.contains(event.target)) return;
+      event.preventDefault();
+    };
+    document.addEventListener('touchmove', blockTouchMove, { passive: false });
   };
 
   const unlockPageScroll = () => {
-    if (!document.body.classList.contains('nav-open')) return;
+    document.documentElement.classList.remove('nav-open');
     document.body.classList.remove('nav-open');
-    document.body.style.top = '';
-    window.scrollTo(0, scrollLockY);
+
+    if (blockTouchMove) {
+      document.removeEventListener('touchmove', blockTouchMove);
+      blockTouchMove = null;
+    }
   };
 
   const setMenuOpen = (isOpen) => {
     if (!isMobileNav()) {
-      links.classList.remove('open');
+      menu.classList.remove('is-open');
       toggle.classList.remove('is-active');
       backdrop.classList.remove('is-visible');
-      portalMenuToBody(false);
       unlockPageScroll();
-      links.removeAttribute('aria-hidden');
+      menu.setAttribute('aria-hidden', 'true');
       return;
     }
 
-    if (isOpen) {
-      portalMenuToBody(true);
-      lockPageScroll();
-    } else {
-      portalMenuToBody(false);
-      unlockPageScroll();
-    }
-
-    links.classList.toggle('open', isOpen);
+    menu.classList.toggle('is-open', isOpen);
     toggle.classList.toggle('is-active', isOpen);
     backdrop.classList.toggle('is-visible', isOpen);
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
     backdrop.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    links.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+    if (isOpen) {
+      lockPageScroll();
+    } else {
+      unlockPageScroll();
+    }
   };
 
   const closeMenu = () => setMenuOpen(false);
 
   toggle.addEventListener('click', () => {
-    setMenuOpen(!links.classList.contains('open'));
+    setMenuOpen(!menu.classList.contains('is-open'));
   });
 
   backdrop.addEventListener('click', closeMenu);
@@ -130,10 +120,12 @@ function initNavigation() {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024) closeMenu();
+    if (!isMobileNav()) closeMenu();
   });
 
   window.addEventListener('hashchange', closeMenu);
+
+  menu.setAttribute('aria-hidden', isMobileNav() ? 'true' : 'false');
 }
 
 

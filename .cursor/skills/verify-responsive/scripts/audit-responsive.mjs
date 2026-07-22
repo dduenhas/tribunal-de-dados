@@ -95,8 +95,8 @@ function auditMobileNav(css, js, html) {
     pass('backdrop do menu mobile no HTML');
   }
 
-  if (!/visibility:\s*hidden/.test(css) || !/\.nav__links\.open/.test(css)) {
-    fail('menu mobile sem controle visibility/estado .open');
+  if (!/visibility:\s*hidden/.test(css) || !/\.nav-menu\.is-open/.test(css)) {
+    fail('menu mobile sem controle visibility/estado .is-open');
   } else {
     pass('menu mobile oculto corretamente quando fechado');
   }

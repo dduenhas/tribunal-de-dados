@@ -278,6 +278,10 @@ img { max-width: 100%; display: block; }
   flex-wrap: nowrap;
 }
 
+.nav-menu {
+  display: contents;
+}
+
 .nav__links li {
   flex-shrink: 0;
 }
@@ -370,45 +374,59 @@ img { max-width: 100%; display: block; }
 
 body.nav-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
   overscroll-behavior: none;
   touch-action: none;
+}
+
+html.nav-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.nav-open .nav__brand,
+body.nav-open .nav__toggle {
+  z-index: 1102;
 }
 
 @media (max-width: 1024px) {
   .nav__toggle { display: flex; }
 
-  .nav__links {
+  .nav-menu {
+    display: block;
     position: fixed;
     inset: 0;
     z-index: 1100;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
-    margin: 0;
-    padding: calc(var(--nav-height) + var(--space-xl)) var(--space-xl) var(--space-2xl);
-    background: rgba(10, 13, 18, 0.98);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: none;
     transition: opacity var(--duration) var(--ease-out),
                 visibility var(--duration) var(--ease-out);
   }
 
-  .nav__links.open {
+  .nav-menu.is-open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
 
+  .nav-menu .nav__links {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    margin: 0;
+    padding: calc(var(--nav-height) + var(--space-xl)) var(--space-lg) var(--space-2xl);
+    background: var(--bg-primary);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .nav__links li {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-light);
   }
 
   .nav__links li:last-child {
@@ -417,9 +435,11 @@ body.nav-open {
 
   .nav__links a {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: var(--space-md);
     font-size: var(--text-base);
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     padding: var(--space-md) 0;
     color: var(--text-primary);
   }
@@ -430,9 +450,10 @@ body.nav-open {
 
   .nav__links a::before {
     content: '→';
-    color: var(--accent-gold-dim);
+    color: var(--accent-gold);
     font-size: var(--text-lg);
-    opacity: 0.7;
+    line-height: 1;
+    flex-shrink: 0;
   }
 }
 
