@@ -218,7 +218,8 @@ img { max-width: 100%; display: block; }
    NAVIGATION
    ══════════════════════════════════════ */
 
-.nav {
+.nav,
+.site-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -231,10 +232,9 @@ img { max-width: 100%; display: block; }
   background: transparent;
 }
 
-.nav--scrolled {
-  background: rgba(12, 15, 20, 0.92);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+.nav--scrolled,
+.site-header--scrolled {
+  background: rgba(12, 15, 20, 0.97);
   border-bottom: 1px solid var(--border);
   padding: var(--space-xs) 0;
 }
@@ -355,9 +355,7 @@ img { max-width: 100%; display: block; }
   position: fixed;
   inset: 0;
   z-index: 1098;
-  background: rgba(8, 10, 14, 0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(8, 10, 14, 0.82);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -372,6 +370,10 @@ img { max-width: 100%; display: block; }
 
 body.nav-open {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 @media (max-width: 1024px) {
@@ -385,26 +387,24 @@ body.nav-open {
     align-items: stretch;
     justify-content: flex-start;
     gap: 0;
+    margin: 0;
     padding: calc(var(--nav-height) + var(--space-xl)) var(--space-xl) var(--space-2xl);
     background: rgba(10, 13, 18, 0.98);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
     overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-0.75rem);
+    transform: none;
     transition: opacity var(--duration) var(--ease-out),
-                visibility var(--duration) var(--ease-out),
-                transform var(--duration) var(--ease-out);
+                visibility var(--duration) var(--ease-out);
   }
 
   .nav__links.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
   }
 
   .nav__links li {
