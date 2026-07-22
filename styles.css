@@ -1149,10 +1149,16 @@ img { max-width: 100%; display: block; }
   background: rgba(196, 162, 101, 0.11);
 }
 
-.debt-rank-table {
+.debt-rank-table,
+.data-table.debt-rank-table {
   min-width: 1480px;
   font-size: var(--text-xs);
   width: max-content;
+  table-layout: auto;
+}
+
+.debt-rank-table--international {
+  min-width: 1960px;
 }
 
 .debt-rank-table--compare {
@@ -1175,10 +1181,20 @@ img { max-width: 100%; display: block; }
   padding: var(--space-sm) var(--space-md);
   vertical-align: top;
   line-height: 1.45;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Coluna de observação — única que quebra linha */
+.debt-rank-table th:last-child,
+.debt-rank-table td:last-child {
   white-space: normal;
   word-break: break-word;
-  overflow-wrap: anywhere;
-  hyphens: auto;
+  overflow-wrap: break-word;
+  min-width: 16rem;
+  max-width: 22rem;
+  padding-right: var(--space-xl);
 }
 
 /* Colunas numéricas — mantêm linha única */
@@ -1204,16 +1220,25 @@ img { max-width: 100%; display: block; }
 .debt-rank-table .col-local {
   min-width: 7.5rem;
   max-width: 9rem;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .debt-rank-table .col-text {
   min-width: 9rem;
   max-width: 14rem;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .debt-rank-table .col-text-wide {
   min-width: 11rem;
   max-width: 16rem;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .debt-rank-table .col-source {
@@ -1221,6 +1246,9 @@ img { max-width: 100%; display: block; }
   max-width: 10rem;
   color: var(--text-secondary);
   font-size: 0.72rem;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .debt-rank-table--compare th:nth-child(5),
@@ -1233,9 +1261,9 @@ img { max-width: 100%; display: block; }
   min-width: 7.5rem;
 }
 
-.debt-rank-table th:last-child,
-.debt-rank-table td:last-child {
-  padding-right: var(--space-xl);
+.debt-rank-table--international th:nth-child(n+4):nth-child(-n+11),
+.debt-rank-table--international td:nth-child(n+4):nth-child(-n+11) {
+  min-width: 6.5rem;
 }
 
 .debt-rank-table th:first-child,
@@ -1254,7 +1282,12 @@ img { max-width: 100%; display: block; }
   z-index: 2;
   background: var(--bg-card);
   box-shadow: 1px 0 0 var(--border);
-  min-width: 7rem;
+  min-width: 9rem;
+}
+
+.debt-rank-table th:nth-child(3),
+.debt-rank-table td:nth-child(3) {
+  min-width: 6.5rem;
 }
 
 .debt-rank-table tbody tr:hover td:first-child,
@@ -1307,6 +1340,10 @@ img { max-width: 100%; display: block; }
   width: 100%;
   border-collapse: collapse;
   font-size: var(--text-sm);
+}
+
+.data-table.debt-rank-table {
+  width: max-content;
 }
 
 .data-table th {
