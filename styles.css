@@ -1166,7 +1166,48 @@ img { max-width: 100%; display: block; }
 }
 
 .debt-rank-table--feminicidio {
-  min-width: 1320px;
+  min-width: 1580px;
+}
+
+.debt-rank-table--feminicidio th:nth-child(2),
+.debt-rank-table--feminicidio td:nth-child(2) {
+  position: static;
+  left: auto;
+  box-shadow: none;
+  background: inherit;
+  min-width: 7.5rem;
+}
+
+.debt-rank-table--feminicidio th:nth-child(4),
+.debt-rank-table--feminicidio td:nth-child(4),
+.debt-rank-table--feminicidio th:nth-child(5),
+.debt-rank-table--feminicidio td:nth-child(5) {
+  min-width: 7.5rem;
+}
+
+.debt-rank-table--feminicidio th:nth-child(8),
+.debt-rank-table--feminicidio td:nth-child(8),
+.debt-rank-table--feminicidio th:nth-child(9),
+.debt-rank-table--feminicidio td:nth-child(9) {
+  min-width: 6.75rem;
+}
+
+.debt-rank-table--feminicidio th:last-child,
+.debt-rank-table--feminicidio td:last-child {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  min-width: 7rem;
+  max-width: none;
+  padding-right: var(--space-xl);
+}
+
+.debt-rank-table--feminicidio tbody tr:hover td:nth-child(2) {
+  background: rgba(196, 162, 101, 0.04);
+}
+
+.debt-rank-table--feminicidio .data-table__row--highlight td:nth-child(2) {
+  background: rgba(196, 162, 101, 0.07);
 }
 
 .debt-rank-table th {
@@ -1186,9 +1227,9 @@ img { max-width: 100%; display: block; }
   overflow-wrap: normal;
 }
 
-/* Coluna de observação — única que quebra linha */
-.debt-rank-table th:last-child,
-.debt-rank-table td:last-child {
+/* Coluna de observação — apenas na tabela internacional */
+.debt-rank-table--international th:last-child,
+.debt-rank-table--international td:last-child {
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -1199,11 +1240,36 @@ img { max-width: 100%; display: block; }
 
 /* Colunas numéricas — mantêm linha única */
 .debt-rank-table .col-num,
-.debt-rank-table th:nth-child(1),
-.debt-rank-table td:nth-child(1) {
+.debt-rank-table:not(.debt-rank-table--feminicidio) th:nth-child(1),
+.debt-rank-table:not(.debt-rank-table--feminicidio) td:nth-child(1) {
   white-space: nowrap;
   width: 2.25rem;
   min-width: 2.25rem;
+}
+
+.debt-rank-table--feminicidio th:nth-child(1),
+.debt-rank-table--feminicidio td:nth-child(1) {
+  white-space: nowrap;
+  min-width: 3.75rem;
+  width: auto;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--bg-elevated);
+  box-shadow: 1px 0 0 var(--border);
+}
+
+.debt-rank-table--feminicidio tbody tr td:nth-child(1) {
+  background: var(--bg-card);
+}
+
+.debt-rank-table--feminicidio tbody tr:hover td:nth-child(1),
+.debt-rank-table--feminicidio .data-table__row--highlight td:nth-child(1) {
+  background: rgba(196, 162, 101, 0.04);
+}
+
+.debt-rank-table--feminicidio .data-table__row--highlight td:nth-child(1) {
+  background: rgba(196, 162, 101, 0.07);
 }
 
 .debt-rank-table .col-num {
