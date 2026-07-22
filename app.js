@@ -67,23 +67,114 @@ function initNavigation() {
 
 
 /* ══════════════════════════════════════
+   MOTION & VIEWPORT HELPERS
+   ══════════════════════════════════════ */
+
+const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function shouldReduceMotion() {
+  return motionMedia.matches;
+}
+
+function isInViewport(el, marginRatio = 0.06) {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  const margin = vh * marginRatio;
+  return rect.top < vh - margin && rect.bottom > margin;
+}
+
+function getRevealStaggerDelay(el) {
+  const parent = el.parentElement;
+  if (!parent) return 0;
+
+  const siblings = [...parent.children].filter((node) => node.classList.contains('reveal'));
+  const index = siblings.indexOf(el);
+  return index > 0 ? index * 150 : 0;
+}
+
+function scheduleWhenVisible(el, onVisible, options = {}) {
+  if (shouldReduceMotion()) {
+    onVisible();
+    return () => {};
+  }
+
+  const {
+    threshold = 0.06,
+    rootMargin = '0px 0px -4% 0px',
+  } = options;
+
+  let done = false;
+  const run = () => {
+    if (done) return;
+    done = true;
+    onVisible();
+  };
+
+  if (isInViewport(el)) {
+    requestAnimationFrame(run);
+    return () => {};
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      observer.disconnect();
+      run();
+      break;
+    }
+  }, { threshold, rootMargin });
+
+  observer.observe(el);
+
+  let scrollTicking = false;
+  const onScroll = () => {
+    if (done || scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      scrollTicking = false;
+      if (!done && isInViewport(el)) {
+        observer.disconnect();
+        run();
+      }
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('load', () => {
+    if (!done && isInViewport(el)) {
+      observer.disconnect();
+      run();
+    }
+  }, { once: true });
+
+  return () => {
+    observer.disconnect();
+    window.removeEventListener('scroll', onScroll);
+  };
+}
+
+
+/* ══════════════════════════════════════
    REVEAL ANIMATIONS (Intersection Observer)
    ══════════════════════════════════════ */
 
 function initRevealAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  const elements = document.querySelectorAll('.reveal');
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  if (shouldReduceMotion()) {
+    elements.forEach((el) => el.classList.add('visible'));
+    return;
+  }
+
+  elements.forEach((el) => {
+    scheduleWhenVisible(el, () => {
+      const delay = getRevealStaggerDelay(el);
+      window.setTimeout(() => el.classList.add('visible'), delay);
+    }, {
+      threshold: 0.06,
+      rootMargin: '0px 0px -4% 0px',
+    });
+  });
 }
 
 
@@ -94,24 +185,26 @@ function initRevealAnimations() {
 function initCountUp() {
   const counters = document.querySelectorAll('[data-count]');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-count'));
-        animateCount(el, target);
-        observer.unobserve(el);
-      }
+  counters.forEach((el) => {
+    scheduleWhenVisible(el, () => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      animateCount(el, target);
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -4% 0px',
     });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
+  });
 }
 
 function animateCount(el, target) {
-  const duration = 2000;
+  const duration = shouldReduceMotion() ? 0 : 2800;
   const start = performance.now();
   const isDecimal = target % 1 !== 0;
+
+  if (duration === 0) {
+    el.textContent = isDecimal ? target.toFixed(1) : Math.round(target).toLocaleString('pt-BR');
+    return;
+  }
 
   function update(now) {
     const elapsed = now - start;
@@ -181,38 +274,36 @@ function configureChartDefaults() {
   Chart.defaults.plugins.tooltip.boxPadding = 6;
 }
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 function chartStagger(ctx, step = 100) {
   if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
   return ctx.dataIndex * step + ctx.datasetIndex * 60;
 }
 
 function entranceAnimation(kind) {
-  if (prefersReducedMotion) return { duration: 0 };
+  if (shouldReduceMotion()) return { duration: 0 };
 
   const presets = {
     bar: {
-      duration: 1300,
+      duration: 2400,
       easing: 'easeOutQuart',
-      delay: (ctx) => chartStagger(ctx, 140),
+      delay: (ctx) => chartStagger(ctx, 200),
     },
     barH: {
-      duration: 1400,
+      duration: 2600,
       easing: 'easeOutQuart',
-      delay: (ctx) => chartStagger(ctx, 110),
+      delay: (ctx) => chartStagger(ctx, 160),
     },
     line: {
-      duration: 1600,
+      duration: 2800,
       easing: 'easeOutQuart',
-      delay: (ctx) => chartStagger(ctx, 65),
+      delay: (ctx) => chartStagger(ctx, 95),
     },
     doughnut: {
       animateRotate: true,
       animateScale: true,
-      duration: 1500,
+      duration: 2600,
       easing: 'easeOutCubic',
-      delay: (ctx) => chartStagger(ctx, 85),
+      delay: (ctx) => chartStagger(ctx, 120),
     },
   };
 
@@ -220,45 +311,45 @@ function entranceAnimation(kind) {
 }
 
 function entranceAnimationsLine() {
-  if (prefersReducedMotion) return {};
+  if (shouldReduceMotion()) return {};
 
   return {
     y: {
       type: 'number',
       easing: 'easeOutQuart',
-      duration: 1700,
+      duration: 2800,
       from: (ctx) => {
         if (ctx.type === 'data') {
           const scale = ctx.chart.scales.y;
           return scale.getPixelForValue(scale.min);
         }
       },
-      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 65 + ctx.datasetIndex * 40 : 0),
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 95 + ctx.datasetIndex * 55 : 0),
     },
     tension: {
-      duration: 1700,
+      duration: 2800,
       easing: 'easeOutQuart',
       from: 0,
     },
     radius: {
-      duration: 500,
+      duration: 700,
       easing: 'easeOutQuart',
       from: 0,
-      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 65 + ctx.datasetIndex * 40 + 450 : 0),
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 95 + ctx.datasetIndex * 55 + 650 : 0),
     },
   };
 }
 
 function entranceAnimationsBarH() {
-  if (prefersReducedMotion) return {};
+  if (shouldReduceMotion()) return {};
 
   return {
     x: {
       type: 'number',
       easing: 'easeOutQuart',
-      duration: 1400,
+      duration: 2600,
       from: 0,
-      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 110 : 0),
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 160 : 0),
     },
   };
 }
@@ -274,19 +365,19 @@ function buildChart(ctx, config) {
   const customAnimations = config.options.animations;
 
   config.options.animation = {
-    ...entranceAnimation(kind),
     ...customAnimation,
+    ...entranceAnimation(kind),
   };
 
   if (type === 'line') {
     config.options.animations = {
-      ...entranceAnimationsLine(),
       ...customAnimations,
+      ...entranceAnimationsLine(),
     };
   } else if (kind === 'barH') {
     config.options.animations = {
-      ...entranceAnimationsBarH(),
       ...customAnimations,
+      ...entranceAnimationsBarH(),
     };
   }
 
@@ -312,30 +403,26 @@ function observeChartReveal(canvasId, createFn) {
     return;
   }
 
-  wrap.classList.add('chart-canvas-wrap--pending');
+  wrap.classList.add('chart-card__canvas-wrap--pending');
 
-  if (prefersReducedMotion) {
-    wrap.classList.remove('chart-canvas-wrap--pending');
-    wrap.classList.add('chart-canvas-wrap--revealed');
-    mountChart();
+  const revealAndMount = () => {
+    if (entry.rendered) return;
+    wrap.classList.remove('chart-card__canvas-wrap--pending');
+    wrap.classList.add('chart-card__canvas-wrap--revealed');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(mountChart);
+    });
+  };
+
+  if (shouldReduceMotion()) {
+    revealAndMount();
     return;
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      observer.disconnect();
-      wrap.classList.remove('chart-canvas-wrap--pending');
-      wrap.classList.add('chart-canvas-wrap--revealed');
-      requestAnimationFrame(mountChart);
-      break;
-    }
-  }, {
-    threshold: 0.28,
-    rootMargin: '0px 0px -6% 0px',
+  scheduleWhenVisible(wrap, revealAndMount, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -2% 0px',
   });
-
-  observer.observe(wrap);
 }
 
 
@@ -1694,8 +1781,8 @@ function forceRenderAllCharts() {
   });
 
   document.querySelectorAll('.chart-card__canvas-wrap--pending').forEach((wrap) => {
-    wrap.classList.remove('chart-canvas-wrap--pending');
-    wrap.classList.add('chart-canvas-wrap--revealed');
+    wrap.classList.remove('chart-card__canvas-wrap--pending');
+    wrap.classList.add('chart-card__canvas-wrap--revealed');
   });
 }
 

@@ -821,6 +821,11 @@ img { max-width: 100%; display: block; }
   min-height: 280px;
 }
 
+.chart-card__canvas-wrap canvas {
+  opacity: 1;
+  transition: opacity 0.65s var(--ease-out);
+}
+
 .chart-card__canvas-wrap--pending canvas {
   opacity: 0;
 }
@@ -1747,8 +1752,12 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
 
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+  transform: translateY(32px);
+  transition:
+    opacity 1.05s var(--ease-out),
+    transform 1.05s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -1757,9 +1766,11 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
 }
 
 /* stagger children */
-.reveal:nth-child(2) { transition-delay: 0.08s; }
-.reveal:nth-child(3) { transition-delay: 0.16s; }
-.reveal:nth-child(4) { transition-delay: 0.24s; }
+.reveal:nth-child(2) { --reveal-delay: 0.14s; }
+.reveal:nth-child(3) { --reveal-delay: 0.28s; }
+.reveal:nth-child(4) { --reveal-delay: 0.42s; }
+.reveal:nth-child(5) { --reveal-delay: 0.56s; }
+.reveal:nth-child(6) { --reveal-delay: 0.70s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
