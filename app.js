@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRevealAnimations();
   initCountUp();
   initCharts();
+  initTableDragScroll();
 });
 
 
@@ -1356,4 +1357,82 @@ function chartCulturaViolencia() {
       animation: { duration: 1500, easing: 'easeOutQuart' }
     }
   });
+}
+
+
+/* ══════════════════════════════════════
+   TABLE DRAG SCROLL (wide tables)
+   ══════════════════════════════════════ */
+
+function initTableDragScroll() {
+  document.querySelectorAll('.table-card__scroll').forEach((container) => {
+    observeTableScrollability(container);
+    setupTableDragScroll(container);
+  });
+}
+
+function observeTableScrollability(container) {
+  const update = () => {
+    const scrollable = container.scrollWidth > container.clientWidth + 2;
+    container.classList.toggle('table-card__scroll--draggable', scrollable);
+  };
+
+  update();
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(update);
+    observer.observe(container);
+    const table = container.querySelector('table');
+    if (table) observer.observe(table);
+  }
+
+  window.addEventListener('resize', update, { passive: true });
+}
+
+function setupTableDragScroll(container) {
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let hasMoved = false;
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) hasMoved = true;
+    container.scrollLeft = startScrollLeft - dx;
+  };
+
+  const endDrag = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    container.classList.remove('is-dragging');
+    document.body.classList.remove('is-table-dragging');
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', endDrag);
+  };
+
+  container.addEventListener('mousedown', (e) => {
+    if (!container.classList.contains('table-card__scroll--draggable')) return;
+    if (e.button !== 0) return;
+    if (e.target.closest('a, button, input, select, textarea, label')) return;
+
+    isDragging = true;
+    hasMoved = false;
+    startX = e.clientX;
+    startScrollLeft = container.scrollLeft;
+    container.classList.add('is-dragging');
+    document.body.classList.add('is-table-dragging');
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', endDrag);
+  });
+
+  container.addEventListener('click', (e) => {
+    if (hasMoved) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      hasMoved = false;
+    }
+  }, true);
+
+  container.addEventListener('dragstart', (e) => e.preventDefault());
 }

@@ -1374,6 +1374,20 @@ img { max-width: 100%; display: block; }
   scrollbar-gutter: stable;
 }
 
+.table-card__scroll--draggable {
+  cursor: grab;
+}
+
+.table-card__scroll--draggable.is-dragging,
+body.is-table-dragging .table-card__scroll--draggable.is-dragging {
+  cursor: grabbing;
+}
+
+.table-card__scroll--draggable.is-dragging,
+.table-card__scroll--draggable.is-dragging * {
+  user-select: none;
+}
+
 .table-card__scroll-hint {
   display: flex;
   align-items: center;
