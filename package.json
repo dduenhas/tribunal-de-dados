@@ -1,0 +1,12 @@
+{
+  "name": "tribunal-de-dados",
+  "private": true,
+  "description": "Relatório editorial: dados oficiais vs fake news no Brasil (2016–2026)",
+  "scripts": {
+    "deploy": "wrangler pages deploy . --project-name=tribunal-de-dados --branch=main --commit-dirty=true",
+    "deploy:preview": "wrangler pages deploy . --project-name=tribunal-de-dados"
+  },
+  "devDependencies": {
+    "wrangler": "^4.84.1"
+  }
+}

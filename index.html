@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brasil 2016–2026 — Dados, Fake News e Realidade</title>
+  <meta name="description" content="Relatório analítico confrontando narrativas de desinformação com dados oficiais sobre violência, economia, programas sociais e dívida pública no Brasil entre 2016 e 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C4A265'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/%3E%3Cpolyline points='14,2 14,8 20,8'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__brand">
+        <span class="nav__brand-icon">◆</span>
+        <span class="nav__brand-text">Relatório Brasil</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#violencia">Violência</a></li>
+        <li><a href="#sociais">Programas Sociais</a></li>
+        <li><a href="#economia">Economia</a></li>
+        <li><a href="#divida">Dívida Pública</a></li>
+        <li><a href="#endividamento">Endividamento</a></li>
+        <li><a href="#cultura">Incentivos Culturais</a></li>
+        <li><a href="#sintese">Síntese</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ PROGRESS BAR ═══════════════════ -->
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <main id="main">
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__kicker reveal">Relatório Analítico · Julho 2026</p>
+      <h1 class="hero__title reveal">
+        Brasil 2016–2026<br />
+        <span class="hero__title-accent">Dados, Fake News<br/>e Realidade</span>
+      </h1>
+      <p class="hero__subtitle reveal">Análise comparativa que confronta narrativas de desinformação com dados oficiais sobre violência, economia, programas sociais e dívida pública.</p>
+      <div class="hero__meta reveal">
+        <span class="hero__meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Julho 2026
+        </span>
+        <span class="hero__meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Fontes Oficiais
+        </span>
+        <span class="hero__meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          Período: 10 anos
+        </span>
+      </div>
+      <a href="#sumario" class="hero__cta reveal">
+        Iniciar Leitura
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19,12 12,19 5,12"/></svg>
+      </a>
+    </div>
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════ SUMÁRIO EXECUTIVO ═══════════════════ -->
+  <section class="section section--highlight" id="sumario">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Sumário Executivo</h2>
+      </div>
+      <div class="executive-summary reveal">
+        <div class="executive-summary__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+        </div>
+        <p>Este relatório apresenta uma <strong>análise comparativa</strong> entre os anos de 2016 e 2026 sobre os principais temas da agenda pública brasileira. O período abrange dois governos de orientações distintas e uma profunda transformação no perfil socioeconômico do país.</p>
+        <p>Sempre que possível, são <strong>confrontadas narrativas frequentemente propagadas</strong> com os <strong>dados verificáveis</strong> disponíveis em fontes oficiais.</p>
+      </div>
+      <p class="data-note reveal">Pontos marcados com <strong>*</strong> indicam dados parciais ou acumulados em 12 meses, conforme indicado na nota de rodapé de cada gráfico.</p>
+      <div class="key-numbers reveal">
+        <div class="key-number">
+          <span class="key-number__value" data-count="31.9">0</span><span class="key-number__suffix">%</span>
+          <span class="key-number__label">Redução nos homicídios dolosos</span>
+          <span class="key-number__period">2016 → 2024</span>
+        </div>
+        <div class="key-number">
+          <span class="key-number__value" data-count="5.1">0</span><span class="key-number__suffix">%</span>
+          <span class="key-number__label">Menor desemprego da história</span>
+          <span class="key-number__period">2025</span>
+        </div>
+        <div class="key-number">
+          <span class="key-number__value" data-count="81.6">0</span><span class="key-number__suffix">%</span>
+          <span class="key-number__label">Famílias endividadas</span>
+          <span class="key-number__period">Recorde 2026</span>
+        </div>
+        <div class="key-number">
+          <span class="key-number__value" data-count="19">0</span><span class="key-number__suffix">mi</span>
+          <span class="key-number__label">Famílias no Bolsa Família</span>
+          <span class="key-number__period">Abril 2026</span>
+        </div>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes do sumário executivo">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/20521" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / FBSP</span>
+              <span class="section-sources__name">Atlas da Violência 2026 (relatório completo)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 62.517 homicídios (2016) · 42.590 (2024) · −31,9%</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/45908-pnad-continua-trimestral-desocupacao-recua-em-seis-das-27-ufs-no-4-trimestre-de-2025" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IBGE</span>
+              <span class="section-sources__name">PNAD Contínua — desocupação no 4º trimestre de 2025</span>
+            </a>
+            <span class="section-sources__data">Confirma: taxa de 5,1% — menor da série histórica (desde 2012)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/informes/informes-bolsa-familia" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">MDS</span>
+              <span class="section-sources__name">Informes oficiais do Bolsa Família</span>
+            </a>
+            <span class="section-sources__data">Confirma: ~18,9 mi famílias (abr/2026) · ~18,7 mi (dez/2025)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://valor.globo.com/brasil/noticia/2026/06/10/parcela-de-endividados-bate-novamente-recorde-historico-em-maio-diz-cnc.ghtml" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">CNC / PEIC</span>
+              <span class="section-sources__name">Pesquisa de Endividamento e Inadimplência do Consumidor (maio/2026)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 81,6% das famílias endividadas — recorde da série (desde 2010)</span>
+          </li>
+        </ul>
+        <p class="section-sources__note">Indicadores marcados com * no relatório são parciais ou provisórios. Valores conferidos contra publicações oficiais disponíveis até julho de 2026.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 1. VIOLÊNCIA ═══════════════════ -->
+  <section class="section" id="violencia">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Política Armamentícia e Violência</h2>
+        <p class="section-header__subtitle">Armas, homicídios, feminicídio e a narrativa desmontada pelos dados</p>
+      </div>
+
+      <div class="context-box reveal">
+        <div class="context-box__label">Contexto</div>
+        <p>Entre 2019 e 2022, o governo federal implementou decretos que flexibilizaram significativamente o acesso a armas de fogo. O número de novos registros de CAC somou <strong>178.721</strong> novos registros entre 2019 e 2020.</p>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Homicídios Dolosos</h3>
+          <p class="chart-card__subtitle">Total nacional · 2016 → 2024</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartHomicidios" role="img" aria-label="Gráfico de barras: homicídios dolosos no Brasil — 62.517 em 2016 e 42.590 em 2024, redução de 31,9%"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: Atlas da Violência 2026 (IPEA/FBSP) · SIM/Ministério da Saúde · Total nacional</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Homicídios por Arma de Fogo</h3>
+          <p class="chart-card__subtitle">Percentual sobre total de homicídios</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartArmas" role="img" aria-label="Gráfico de rosca comparando percentual de homicídios por arma de fogo: 71,1% em 2016 e 70% em 2024"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: Atlas da Violência 2026 · Recorte nacional · 2024 = dado mais recente disponível</p>
+        </div>
+      </div>
+
+      <p class="data-note reveal"><strong>Nota:</strong> Os homicídios dolosos apresentados referem-se ao <strong>total nacional</strong> registrado no SIM (Sistema de Informações sobre Mortalidade). O Atlas da Violência 2026 alerta que mortes violentas por causa indeterminada podem subnotificar homicídios — a estimativa ajustada para 2024 é de ~49,7 mil casos.</p>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">29.870</span>
+          <span class="data-highlight__text">homicídios por armas de fogo em 2024</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">20,1</span>
+          <span class="data-highlight__text">homicídios por 100 mil hab. em 2024 — <strong>maior desde 2016</strong></span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">42.590</span>
+          <span class="data-highlight__text">homicídios totais registrados em 2024</span>
+        </div>
+      </div>
+
+      <!-- Fake News vs Realidade -->
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Fake News vs. Realidade
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"Mais armas reduzem a violência"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O Atlas da Violência 2026 mostra que 70% dos homicídios ainda são cometidos com armas de fogo, e a taxa de homicídios por 100 mil habitantes em 2024 foi a maior desde 2016.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"A flexibilização das armas trouxe segurança"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Não há evidência estatística de correlação entre aumento de registros de armas e redução da violência. Em 2024, os homicídios por armas de fogo (29.870) permaneceram elevados.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"O Brasil está mais seguro com armas"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Embora os homicídios dolosos tenham caído <strong>31,9%</strong> entre 2016 (62.517) e 2024 (42.590), a taxa por 100 mil habitantes em 2024 (20,1) permanece elevada — e mortes por causa indeterminada podem ocultar parte dos casos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>A narrativa de que a flexibilização do acesso a armas reduz a violência <strong>não encontra respaldo nos dados</strong>. Apesar da queda de 31,9% nos homicídios dolosos entre 2016 e 2024, o percentual cometido com armas de fogo se manteve em patamar elevado (~70%), e a taxa por 100 mil habitantes em 2024 (20,1) indica que a violência letal permanece estruturalmente alta. A correlação entre mais armas e menos violência é uma <strong>falácia não confirmada</strong> pelos dados oficiais.</p>
+        <p>Para as mulheres, o quadro é ainda mais preocupante: enquanto a violência letal geral caiu 33,4% entre 2014 e 2024, a de mulheres recuou apenas 27,7% — e os <strong>feminicídios tipificados</strong> seguem em trajetória de alta, batendo recorde em 2024 (1.492) e 2025 (1.568).</p>
+      </div>
+
+      <!-- Feminicídio -->
+      <h3 class="subsection-title reveal">Feminicídio — violência de gênero letal</h3>
+
+      <div class="context-box reveal">
+        <div class="context-box__label">Conceitos e metodologia</div>
+        <p><strong>Feminicídio</strong> (Lei nº 13.104/2015) é o homicídio contra a mulher por razões da condição de sexo feminino, incluindo violência doméstica, familiar e discriminação. Os números tipificados vêm dos <strong>boletins de ocorrência</strong> (FBSP/Anuário). Já os <strong>homicídios de mulheres</strong> vêm do SIM/Ministério da Saúde (CIDs X85–Y09 e Y35–Y36) e incluem todas as mortes violentas — tráfico, roubo, intervenção policial etc.</p>
+        <p>O Atlas da Violência usa também uma <strong>medida indireta</strong>: homicídios de mulheres ocorridos <em>dentro de residências</em>, que correlacionam fortemente com feminicídios. Em 2024, <strong>35,2%</strong> dos homicídios femininos foram em casa — patamar estável enquanto a violência em via pública cai.</p>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Homicídios de mulheres e feminicídios</h3>
+          <p class="chart-card__subtitle">Série anual · SIM (saúde) vs FBSP (polícia)</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartFeminicidioSerie" role="img" aria-label="Gráfico de linhas: homicídios de mulheres e feminicídios tipificados entre 2016 e 2024, mostrando queda mais lenta da violência feminina e alta dos feminicídios"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: Atlas da Violência 2026 (SIM) · Anuário FBSP 2016–2025 · Metodologias distintas</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Meios empregados (2024)</h3>
+          <p class="chart-card__subtitle">Arma de fogo vs outros instrumentos</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartFeminicidioMeios" role="img" aria-label="Gráfico comparando meios usados em homicídios de mulheres e feminicídios em 2024: 47% com arma de fogo nos homicídios gerais; nos feminicídios, 48,7% arma branca e 25,2% arma de fogo"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: Instituto Sou da Paz (2024) · FBSP Anuário 2025 · Perfil de instrumentos FBSP 2021–2024</p>
+        </div>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">1.492</span>
+          <span class="data-highlight__text">feminicídios tipificados em 2024 — recorde da série (FBSP)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">47%</span>
+          <span class="data-highlight__text">dos homicídios de mulheres com arma de fogo em 2024 (Sou da Paz/SIM)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">67,5%</span>
+          <span class="data-highlight__text">das vítimas fatais eram mulheres negras (Atlas 2026)</span>
+        </div>
+      </div>
+
+      <div class="table-card reveal">
+        <div class="table-card__scroll">
+          <table class="data-table debt-rank-table debt-rank-table--feminicidio">
+            <thead>
+              <tr>
+                <th>Ano</th>
+                <th>Homicídios mulheres</th>
+                <th>Taxa/100 mil</th>
+                <th>c/ arma de fogo*</th>
+                <th>sem arma de fogo*</th>
+                <th>Feminicídios</th>
+                <th>% do total†</th>
+                <th>Fem. c/ arma‡</th>
+                <th>Fem. c/ arma branca‡</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>2016</td><td>4.645</td><td>4,4</td><td>~2.230</td><td>~2.415</td><td>929</td><td>21,9%</td><td>~234</td><td>~452</td></tr>
+              <tr><td>2017</td><td>4.936</td><td>4,7</td><td>~2.370</td><td>~2.566</td><td>1.075</td><td>23,6%</td><td>~271</td><td>~524</td></tr>
+              <tr><td>2018</td><td>4.519</td><td>4,3</td><td>~2.169</td><td>~2.350</td><td>1.229</td><td>28,3%</td><td>~310</td><td>~599</td></tr>
+              <tr><td>2019</td><td>3.737</td><td>3,5</td><td>~1.794</td><td>~1.943</td><td>1.330</td><td>33,5%</td><td>~335</td><td>~648</td></tr>
+              <tr><td>2020</td><td>3.833</td><td>3,5</td><td>~1.840</td><td>~1.993</td><td>1.354</td><td>33,9%</td><td>~341</td><td>~660</td></tr>
+              <tr><td>2021</td><td>3.858</td><td>3,5</td><td>~1.852</td><td>~2.006</td><td>1.347</td><td>34,8%</td><td>~339</td><td>~656</td></tr>
+              <tr><td>2022</td><td>3.806</td><td>3,5</td><td>~1.878</td><td>~1.928</td><td>1.455</td><td>37,0%</td><td>~367</td><td>~709</td></tr>
+              <tr><td>2023</td><td>3.903</td><td>3,5</td><td>~1.952</td><td>~1.951</td><td>1.475</td><td>37,5%</td><td>~372</td><td>~718</td></tr>
+              <tr class="data-table__row--highlight"><td>2024</td><td>3.642</td><td>3,4</td><td>1.712</td><td>1.930</td><td>1.492</td><td>40,3%</td><td>376</td><td>727</td></tr>
+              <tr><td>2025</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1.568</td><td>—</td><td>~395§</td><td>~764§</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-card__scroll-hint" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          Deslize horizontalmente para ver todas as colunas
+        </p>
+        <p class="chart-card__footnote" style="padding: var(--space-md) var(--space-xl);">* Homicídios c/ e s/ arma de fogo: estimativa Sou da Paz (~47–50% do total SIM; 2024 = dado fechado). ‡ Feminicídios por meio: FBSP (48,7% arma branca, 25,2% arma de fogo, média 2021–2024); 2024 = cálculo direto. § 2025: estimativa aplicando perfil FBSP. † % feminicídios sobre homicídios de mulheres (Atlas 2026, tabela 5.3).</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Leitura: feminicídio e armas de fogo</h4>
+        <p>Entre 2016 e 2024, os homicídios de mulheres caíram de <strong>4.645 para 3.642</strong> (−21,6%), mas os feminicídios tipificados <strong>subiram de 929 para 1.492</strong> (+60,6%). Isso reflete, em parte, melhor registro policial — a fatia de feminicídios sobre o total passou de 21,9% para 40,3% — mas também a persistência da violência de gênero enquanto a criminalidade geral recua.</p>
+        <p>O perfil dos meios é distinto. Nos <strong>homicídios de mulheres</strong> (universo amplo do SIM), a arma de fogo é o instrumento mais letal: <strong>47%</strong> em 2024 (Sou da Paz), estável em ~50% na década. Já nos <strong>feminicídios tipificados</strong> (violência de gênero/doméstica), prevalece a <strong>arma branca</strong> (48,7%) — faca, machado, canivete — e a arma de fogo aparece em <strong>25,2%</strong> (FBSP). A diferença ocorre porque feminicídios concentram-se no ambiente doméstico; armas de fogo aparecem mais em homicídios de mulheres fora desse contexto (tráfico, assaltos).</p>
+        <p>Ainda assim, a presença de arma de fogo eleva drasticamente a letalidade: estudo do Sou da Paz indica que, em São Paulo, agressões domésticas com arma de fogo têm <strong>85% mais chance de resultar em morte</strong>. Oito em cada dez feminicídios são cometidos por parceiro ou ex-parceiro; <strong>66,3%</strong> ocorrem dentro de casa. Mulheres negras são <strong>67,5%</strong> das vítimas fatais — taxa 66,7% superior à de mulheres não negras.</p>
+        <p>Em 2025, o FBSP registrou <strong>1.568 feminicídios</strong> (+4,7% vs 2024), maior patamar da série desde a Lei de 2015 — enquanto as mortes violentas intencionais gerais caíram 5,4%. O feminicídio não acompanha a tendência de queda da violência: é um fenômeno estrutural, ligado ao patriarcado e à desigualdade, não à flexibilização armamentícia isoladamente — embora mais armas em circulação aumentem o risco de letalidade quando a violência escalona.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Violência">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/20521" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / FBSP</span>
+              <span class="section-sources__name">Atlas da Violência 2026 — homicídios dolosos (SIM/Ministério da Saúde)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 62.517 (2016) · 42.590 (2024) · taxa 20,1/100 mil · ~70% com arma de fogo</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/planejamento/pt-br/assuntos/noticias/2026/maio/atlas-da-violencia-brasil-registrou-42-590-homicidios-em-2024-menor-resultado-da-serie-historica-mas-subnotificacao-preocupa" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Ministério do Planejamento</span>
+              <span class="section-sources__name">Nota oficial sobre o Atlas da Violência 2026</span>
+            </a>
+            <span class="section-sources__data">Confirma: 42.590 homicídios em 2024 · subnotificação por mortes indeterminadas (~49,7 mil estimados)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://publicacoes.forumseguranca.org.br/handle/fbsp/279" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">FBSP</span>
+              <span class="section-sources__name">19º Anuário Brasileiro de Segurança Pública (2025) — dados de 2024</span>
+            </a>
+            <span class="section-sources__data">Confirma: 1.492 feminicídios (2024) · 1.568 (2025) · homicídios de mulheres via boletins de ocorrência</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.ipea.gov.br/atlasviolencia/" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA</span>
+              <span class="section-sources__name">Portal Atlas da Violência — séries e indicadores interativos</span>
+            </a>
+            <span class="section-sources__data">Confirma: 67,5% das vítimas fatais eram mulheres negras · 35,2% dos homicídios femininos em residências (2024)</span>
+          </li>
+        </ul>
+        <p class="section-sources__note">Homicídios de mulheres (SIM) e feminicídios tipificados (FBSP) usam metodologias distintas — ambas citadas com recorte explícito nos gráficos.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 2. PROGRAMAS SOCIAIS ═══════════════════ -->
+  <section class="section section--alt" id="sociais">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Programas Sociais</h2>
+        <p class="section-header__subtitle">Transferência de renda, adesão e impacto social</p>
+      </div>
+
+      <!-- Programas Sociais e Violência -->
+      <div class="context-box reveal">
+        <div class="context-box__label">Programas Sociais e Violência</div>
+        <p>A relação entre programas de transferência de renda e índices de violência é frequentemente distorcida por narrativas que associam benefícios sociais ao "incentivo à criminalidade".</p>
+        <p style="margin-top: 0.75rem;">Estudos indicam que programas como o Bolsa Família contribuem para a <strong>redução da pobreza extrema e da desigualdade</strong>, fatores estruturantes da violência. Cortes em programas sociais tendem a agravar a vulnerabilidade de populações já marginalizadas.</p>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Fake News vs. Realidade
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"Bolsa Família incentiva a criminalidade"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Não há evidência empírica que sustente esta afirmação. Estudos mostram que a transferência de renda reduz fatores de risco associados à violência.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"Programas sociais são 'esmola' que não resolvem nada"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Estudos do IPEA indicam que o Bolsa Família reduz a pobreza em <strong>15%</strong> e a extrema pobreza em <strong>25%</strong> entre beneficiários; em 2017, retirou <strong>3,4 milhões</strong> da extrema pobreza e <strong>3,2 milhões</strong> da pobreza <span class="source">(<a href="https://repositorio.ipea.gov.br/handle/11058/8479" target="_blank" rel="noopener noreferrer">IPEA, TD 2499, 2018</a>)</span>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programas Detalhados -->
+      <h3 class="subsection-title reveal">Adesão e Desligamento</h3>
+
+      <div class="grid grid--3 reveal">
+        <div class="program-card">
+          <div class="program-card__header program-card__header--bf">
+            <span class="program-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <h4>Bolsa Família</h4>
+          </div>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              <li>Renda per capita de até <strong>R$ 218/mês</strong></li>
+              <li>~2 milhões de famílias saíram em 2025</li>
+              <li>Retomou crescimento em 2026: <strong>+132 mil</strong></li>
+              <li>Abril/2026: <strong>~19 milhões</strong> de pagamentos</li>
+              <li>Desligamento voluntário via app (IN nº 54)</li>
+              <li>Reversão em até 36 meses</li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card__header program-card__header--desenrola">
+            <span class="program-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </span>
+            <h4>Desenrola Brasil</h4>
+          </div>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              <li>Relançado em <strong>04/05/2026</strong>, duração 90 dias</li>
+              <li>Descontos de <strong>30% a 90%</strong></li>
+              <li>Juros máx.: <strong>1,99% ao mês</strong></li>
+              <li>Prazo até <strong>48 meses</strong></li>
+              <li>Saque de até 20% do FGTS</li>
+              <li class="program-card__alert">Beneficiou apenas <strong>10%</strong> da população endividada</li>
+            </ul>
+          </div>
+        </div>
+        <div class="program-card">
+          <div class="program-card__header program-card__header--pedemeia">
+            <span class="program-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </span>
+            <h4>Pé-de-Meia</h4>
+          </div>
+          <div class="program-card__body">
+            <ul class="program-card__list">
+              <li>Lei nº 14.818 (jan/2024)</li>
+              <li>Ensino médio público</li>
+              <li>Seleção <strong>automática</strong> via CadÚnico</li>
+              <li>Até <strong>R$ 2.000/ano</strong></li>
+              <li>R$ 1.000 ao final de cada ano concluído</li>
+              <li>15 janelas de pagamento em 2026</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card chart-card--wide reveal">
+        <h3 class="chart-card__title">Bolsa Família — Beneficiários</h3>
+        <p class="chart-card__subtitle">Famílias atendidas · dez/ano (2016–2025) e abr/2026</p>
+        <div class="chart-card__canvas-wrap chart-card__canvas-wrap--short">
+          <canvas id="chartBolsaFamilia" role="img" aria-label="Gráfico de linha: famílias no Bolsa Família de 13,6 milhões em 2016 a pico de 21 milhões em 2022 (Auxílio Brasil), retomando 18,9 milhões em abril de 2026"></canvas>
+        </div>
+        <p class="chart-card__footnote">Fonte: MDS / Ipeadata · Dez/ano até 2025; abr/2026 = dado parcial mensal · Inclui período Auxílio Brasil (2021–2023)</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>Os programas sociais sofreram oscilações significativas no período. O Bolsa Família, após queda em 2025, retomou crescimento em 2026. O Desenrola, embora ambicioso, teve alcance limitado frente à magnitude do endividamento. O <strong>Pé-de-Meia</strong> representa uma inovação na política de incentivo à permanência escolar.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Programas Sociais">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/informes/informes-bolsa-familia" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">MDS</span>
+              <span class="section-sources__name">Informes mensais do Bolsa Família</span>
+            </a>
+            <span class="section-sources__data">Confirma: 13,56 mi (dez/2016) · pico 20,98 mi (dez/2022) · ~18,9 mi (abr/2026)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.ipeadata.gov.br/" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / Ipeadata</span>
+              <span class="section-sources__name">Série histórica de famílias beneficiárias — PBF/Auxílio Brasil</span>
+            </a>
+            <span class="section-sources__data">Confirma: série dez/ano usada no gráfico (2016–2025)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/8479" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA</span>
+              <span class="section-sources__name">Texto para Discussão 2499 — impacto do Bolsa Família na pobreza (2018)</span>
+            </a>
+            <span class="section-sources__data">Confirma: −15% pobreza · −25% extrema pobreza entre beneficiários · 3,4 mi e 3,2 mi retirados em 2017</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/mds/pt-br/noticias-e-conteudos/desenvolvimento-social/noticias-desenvolvimento-social/bolsa-familia-amplia-inclusao-e-fortalece-gestoes-estaduais-e-municipais" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">MDS</span>
+              <span class="section-sources__name">Balanço do Bolsa Família em 2025</span>
+            </a>
+            <span class="section-sources__data">Confirma: ~2 mi famílias saíram do programa em 2025 · média mensal ~19,8 mi</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 3. ECONOMIA ═══════════════════ -->
+  <section class="section" id="economia">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Economia</h2>
+        <p class="section-header__subtitle">Inflação, juros, emprego e a realidade dos números</p>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Inflação (IPCA)</h3>
+          <p class="chart-card__subtitle">Variação anual acumulada (%)</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartIPCA" role="img" aria-label="Gráfico de linha da inflação IPCA: variação anual de 6,29% em 2016 a 4,64% acumulados em 12 meses até junho de 2026"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: IBGE · IPCA acumulado 12 meses · * Jun/2026 = dado parcial, sujeito a revisão</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Taxa Selic</h3>
+          <p class="chart-card__subtitle">% ao ano — referência de período</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartSelic" role="img" aria-label="Gráfico de linha da taxa Selic: de 14,25% em 2016 a 14,50% em junho de 2026, com mínima de 2% em 2020"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: BCB · Copom · * Jun/2026 = taxa vigente na data de referência</p>
+        </div>
+      </div>
+
+      <div class="chart-card chart-card--wide reveal">
+        <h3 class="chart-card__title">Taxa de Desemprego</h3>
+        <p class="chart-card__subtitle">Evolução da taxa de desocupação (%) — PNAD Contínua</p>
+        <div class="chart-card__canvas-wrap chart-card__canvas-wrap--short">
+          <canvas id="chartDesemprego" role="img" aria-label="Gráfico de linha do desemprego: de acima de 12% em 2016 a mínimo histórico de 5,1% em 2025 e 5,8% em junho de 2026"></canvas>
+        </div>
+        <p class="chart-card__footnote">Fonte: IBGE / PNAD Contínua · * Jun/2026 = trimestre móvel, dado provisório</p>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--success">
+          <span class="data-highlight__number">5,1%</span>
+          <span class="data-highlight__text">Menor desemprego da história — 2025</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">4,64%</span>
+          <span class="data-highlight__text">IPCA acumulado 12 meses (jun/2026)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">14,50%</span>
+          <span class="data-highlight__text">Selic atual — maior do século XXI em média de governo</span>
+        </div>
+      </div>
+
+      <div class="context-box reveal">
+        <div class="context-box__label">Nota sobre a Selic</div>
+        <p>A taxa Selic, mesmo após ajuste para 14,50% ao ano, permanece fortemente restritiva. A Selic <strong>média</strong> sob o governo atual é de <strong>12,5%</strong>, a maior do século XXI, em comparação com <strong>6,6%</strong> na gestão anterior.</p>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Fake News vs. Realidade
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"O governo está destruindo a economia"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O desemprego em 2025 atingiu o <strong>menor nível da história</strong> (5,1%).</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"A inflação está fora de controle"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O IPCA de 2026 (4,64% em 12 meses) está <strong>dentro do intervalo de tolerância</strong> da meta.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"Os juros estão altos por culpa do governo"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>A Selic de 14,50% é uma resposta do BC à política monetária restritiva, influenciada por <strong>fatores globais e fiscais</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>O mercado de trabalho brasileiro apresentou <strong>melhora expressiva</strong> no período, com a taxa de desemprego caindo de mais de 12% em 2016 para o menor patamar histórico em 2025 (5,1%). A subida para 5,8% no início de 2026 indica possível arrefecimento, mas os números permanecem em <strong>patamares historicamente baixos</strong>.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Economia">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://sidra.ibge.gov.br/tabela/1737" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IBGE / SIDRA</span>
+              <span class="section-sources__name">Tabela 1737 — IPCA: série histórica e variação em 12 meses</span>
+            </a>
+            <span class="section-sources__data">Confirma: 6,29% (2016) · 4,83% (2024) · 4,26% (2025) · *Jun/2026 = dado parcial</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.bcb.gov.br/controleinflacao/historicotaxasjuros" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Banco Central</span>
+              <span class="section-sources__name">Histórico de taxas Selic — Copom</span>
+            </a>
+            <span class="section-sources__data">Confirma: 14,25% (2016) · 2,00% (2020) · 14,50% (jun/2026)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/45908-pnad-continua-trimestral-desocupacao-recua-em-seis-das-27-ufs-no-4-trimestre-de-2025" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IBGE</span>
+              <span class="section-sources__name">PNAD Contínua — taxa de desocupação (série desde 2012)</span>
+            </a>
+            <span class="section-sources__data">Confirma: &gt;12% (2016) · 5,1% (4º tri/2025, recorde) · 5,8% (*jun/2026, provisório)</span>
+          </li>
+        </ul>
+        <p class="section-sources__note">A meta de inflação do BC é de 3% com intervalo de tolerância de 1,5 p.p. (1,5%–4,5%). IPCA em 12 meses dentro desse intervalo indica controle, não necessariamente convergência à meta central.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 4. DÍVIDA PÚBLICA ═══════════════════ -->
+  <section class="section section--alt" id="divida">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Dívida Pública</h2>
+        <p class="section-header__subtitle">Como funciona, como os países usam a dívida e ranking internacional</p>
+      </div>
+
+      <div class="context-box reveal">
+        <div class="context-box__label">Conceitos Fundamentais</div>
+        <div class="grid grid--3 grid--compact">
+          <div class="concept-card">
+            <h4>DBGG</h4>
+            <p>Dívida Bruta do Governo Geral — inclui todos os passivos do setor público (União, estados, municípios e INSS). Fechou 2025 em <strong>78,7% do PIB</strong> (BCB).</p>
+          </div>
+          <div class="concept-card">
+            <h4>DLSP</h4>
+            <p>Dívida Líquida do Setor Público — desconta os ativos financeiros do governo. Em 2025: <strong>65,3% do PIB</strong> (R$ 8,3 tri), recorde da série.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Resultado Primário</h4>
+            <p>Diferença entre receitas e despesas, <em>excluindo juros</em>. Déficit primário de R$ 61,7 bi em 2025 significa que o governo gastou mais do que arrecadou antes de pagar a dívida.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">O que é dívida pública?</h4>
+        <p>Quando o governo gasta mais do que arrecada, precisa financiar a diferença. Em geral, isso ocorre pela emissão de <strong>títulos públicos</strong> — o Tesouro vende NTN-Bs, LTNs e outros papéis; bancos, fundos e até pessoas físicas compram e recebem juros. Esse estoque acumulado de títulos em circulação é a <strong>dívida pública</strong>. Não é um “roubo” nem uma anomalia: praticamente todos os países do mundo emitem dívida, desde economias avançadas até nações em desenvolvimento.</p>
+        <p>A dívida se mede de formas diferentes. A <strong>DBGG</strong> (Brasil) e a “general government gross debt” do FMI incluem o passivo total do setor público. A <strong>dívida líquida</strong> desconta reservas e caixa do governo — mostra o endividamento “efetivo”. O indicador mais usado em comparações internacionais é a <strong>relação dívida/PIB</strong>: uma dívida de R$ 10 trilhões pesa de forma distinta se o PIB cresce ou encolhe.</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Dívida como ferramenta econômica</h4>
+        <p>Estados endividam-se para funções legítimas: <strong>financiar investimento</strong> (obras, educação, infraestrutura), <strong>amortecer crises</strong> (pandemia, recessão, desastres) e <strong>suavizar ciclos econômicos</strong>. Nos EUA, a dívida federal financia desde defesa até Medicare; no Japão, décadas de estímulo fiscal elevaram a dívida acima de 200% do PIB, mas o país mantém capacidade de pagamento. Na União Europeia, países como Alemanha mantêm disciplina fiscal enquanto Itália e Grécia convivem com patamares elevados desde antes da crise de 2008.</p>
+        <p>O problema não é ter dívida — é <strong>como</strong> ela se acumula. Déficits temporários em recessão podem ser desejáveis (Keynes): o Estado injeta demanda quando o setor privado recua. Já déficits crônicos, juros acima do crescimento do PIB e dependência de financiamento externo em moeda estrangeira aumentam o risco. Países emissores de moeda de reserva (EUA, Japão, zona do euro) têm margem maior; economias emergentes como o Brasil precisam equilibrar crescimento, credibilidade fiscal e custo do serviço da dívida — hoje fortemente influenciado pela Selic.</p>
+        <p>No Brasil, o pico da DBGG foi <strong>87,6% do PIB em dez/2020</strong> (pandemia). A queda posterior refletiu retomada do PIB e arrecadação; a retomada da alta desde 2023 está ligada a juros elevados, déficits primários e despesas herdadas. Comparar o Brasil apenas com países de dívida baixa ignora que <strong>EUA (124%)</strong>, <strong>Itália (137%)</strong> e <strong>Japão (230%)</strong> convivem com endividamento maior — em contextos institucionais distintos.</p>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">78,7%</span>
+          <span class="data-highlight__text">DBGG / PIB em dez/2025 — R$ 10 tri (BCB)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">R$ 61,7 bi</span>
+          <span class="data-highlight__text">Déficit primário do governo central em 2025 (STN)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">3ª</span>
+          <span class="data-highlight__text">Maior dívida/PIB na América do Sul (excl. Venezuela e Cuba)</span>
+        </div>
+      </div>
+
+      <!-- Ranking internacional -->
+      <h3 class="subsection-title reveal">Ranking internacional — dívida pública em perspectiva</h3>
+
+      <p class="data-note reveal">Tabela comparativa com indicadores de endividamento, escala econômica e contexto institucional. Dívida/PIB: estimativas FMI (WEO out/2025) e dados nacionais dez/2024, salvo indicação. PIB e população: Banco Mundial, 2024.</p>
+
+      <div class="table-card reveal">
+        <div class="table-card__scroll">
+          <table class="data-table debt-rank-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>País</th>
+                <th>Região</th>
+                <th>População</th>
+                <th>PIB 2024</th>
+                <th>Dívida bruta</th>
+                <th>Dívida líquida</th>
+                <th>Dívida abs.</th>
+                <th>Primário</th>
+                <th>Reservas int.</th>
+                <th>Moeda</th>
+                <th>Observação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="data-table__label">Japão</td>
+                <td>Ásia</td>
+                <td>124 mi</td>
+                <td>US$ 4,0 tri</td>
+                <td>230%</td>
+                <td>137%</td>
+                <td>~US$ 9,2 tri</td>
+                <td>Déficit</td>
+                <td>US$ 1,2 tri</td>
+                <td>Própria (¥)</td>
+                <td>Maior dívida/PIB do G7; população envelhecida; juros baixos por décadas</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="data-table__label">Itália</td>
+                <td>Europa</td>
+                <td>59 mi</td>
+                <td>US$ 2,3 tri</td>
+                <td>137%</td>
+                <td>128%</td>
+                <td>~US$ 3,1 tri</td>
+                <td>~−3% PIB</td>
+                <td>—</td>
+                <td>Euro (€)</td>
+                <td>Endividamento elevado desde antes da crise de 2008; crescimento baixo</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="data-table__label">Estados Unidos</td>
+                <td>América N.</td>
+                <td>335 mi</td>
+                <td>US$ 29,2 tri</td>
+                <td>124%</td>
+                <td>97%</td>
+                <td>~US$ 36 tri</td>
+                <td>Déficit ~6% PIB</td>
+                <td>—</td>
+                <td>Própria (US$)</td>
+                <td>Moeda de reserva global; maior dívida absoluta do mundo</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="data-table__label">França</td>
+                <td>Europa</td>
+                <td>68 mi</td>
+                <td>US$ 3,2 tri</td>
+                <td>113%</td>
+                <td>—</td>
+                <td>~US$ 3,6 tri</td>
+                <td>Déficit</td>
+                <td>—</td>
+                <td>Euro (€)</td>
+                <td>Reformas fiscais em debate; gastos sociais elevados</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="data-table__label">Canadá</td>
+                <td>América N.</td>
+                <td>41 mi</td>
+                <td>US$ 2,2 tri</td>
+                <td>111%</td>
+                <td>—</td>
+                <td>~US$ 2,4 tri</td>
+                <td>Déficit</td>
+                <td>US$ 120 bi</td>
+                <td>Própria (C$)</td>
+                <td>Endividamento subiu na pandemia; economia madura</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="data-table__label">Reino Unido</td>
+                <td>Europa</td>
+                <td>67 mi</td>
+                <td>US$ 3,5 tri</td>
+                <td>102%</td>
+                <td>94%</td>
+                <td>~US$ 3,6 tri</td>
+                <td>Déficit</td>
+                <td>—</td>
+                <td>Própria (£)</td>
+                <td>Post-Brexit; serviço público pressionado</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td class="data-table__label">Bolívia</td>
+                <td>América S.</td>
+                <td>12 mi</td>
+                <td>US$ 49 bi</td>
+                <td>95%</td>
+                <td>76%</td>
+                <td>~US$ 47 bi</td>
+                <td>Déficit</td>
+                <td>US$ 4 bi</td>
+                <td>Própria</td>
+                <td>Dependência de hidrocarbonetos; pressão cambial</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td class="data-table__label">Espanha</td>
+                <td>Europa</td>
+                <td>48 mi</td>
+                <td>US$ 1,6 tri</td>
+                <td>90%</td>
+                <td>—</td>
+                <td>~US$ 1,4 tri</td>
+                <td>Déficit</td>
+                <td>—</td>
+                <td>Euro (€)</td>
+                <td>Recuperação pós-crise de 2012; turismo relevante</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td class="data-table__label">Argentina</td>
+                <td>América S.</td>
+                <td>46 mi</td>
+                <td>US$ 640 bi</td>
+                <td>83%</td>
+                <td>—</td>
+                <td>~US$ 530 bi</td>
+                <td>Superávit recente</td>
+                <td>US$ 28 bi</td>
+                <td>Própria ($)</td>
+                <td>Histórico de calotes; ajuste fiscal em curso (Milei)</td>
+              </tr>
+              <tr class="data-table__row--highlight">
+                <td>10</td>
+                <td class="data-table__label">Brasil</td>
+                <td>América S.</td>
+                <td>213 mi</td>
+                <td>US$ 2,2 tri</td>
+                <td>78,7%*</td>
+                <td>65,3%*</td>
+                <td>~US$ 1,7 tri</td>
+                <td>−R$ 61,7 bi (2025)</td>
+                <td>US$ 355 bi</td>
+                <td>Própria (R$)</td>
+                <td>*DBGG/DLSP dez/2025 (BCB). 93,4% pelo critério FMI. 3ª na América do Sul</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td class="data-table__label">China</td>
+                <td>Ásia</td>
+                <td>1,41 bi</td>
+                <td>US$ 18,9 tri</td>
+                <td>77%</td>
+                <td>—</td>
+                <td>~US$ 14,6 tri</td>
+                <td>Déficit moderado</td>
+                <td>US$ 3,2 tri</td>
+                <td>Própria (¥)</td>
+                <td>Dívida local e imobiliária preocupa; controle de capitais</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td class="data-table__label">Uruguai</td>
+                <td>América S.</td>
+                <td>3,4 mi</td>
+                <td>US$ 81 bi</td>
+                <td>70%</td>
+                <td>57%</td>
+                <td>~US$ 57 bi</td>
+                <td>Equilíbrio</td>
+                <td>US$ 19 bi</td>
+                <td>Própria ($U)</td>
+                <td>Institucionalidade sólida; país pequeno e aberto</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td class="data-table__label">Alemanha</td>
+                <td>Europa</td>
+                <td>84 mi</td>
+                <td>US$ 4,6 tri</td>
+                <td>63%</td>
+                <td>—</td>
+                <td>~US$ 2,9 tri</td>
+                <td>Superávit</td>
+                <td>—</td>
+                <td>Euro (€)</td>
+                <td>Tradicional austeridade; gastos de defesa em alta</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td class="data-table__label">Colômbia</td>
+                <td>América S.</td>
+                <td>52 mi</td>
+                <td>US$ 440 bi</td>
+                <td>61%</td>
+                <td>—</td>
+                <td>~US$ 270 bi</td>
+                <td>Déficit</td>
+                <td>US$ 58 bi</td>
+                <td>Própria ($)</td>
+                <td>Reforma tributária; dívida subiu na pandemia</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td class="data-table__label">Índia</td>
+                <td>Ásia</td>
+                <td>1,43 bi</td>
+                <td>US$ 3,9 tri</td>
+                <td>54%</td>
+                <td>—</td>
+                <td>~US$ 2,1 tri</td>
+                <td>Déficit ~5% PIB</td>
+                <td>US$ 640 bi</td>
+                <td>Própria (₹)</td>
+                <td>Crescimento alto; investimento em infraestrutura</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td class="data-table__label">México</td>
+                <td>América N.</td>
+                <td>130 mi</td>
+                <td>US$ 1,85 tri</td>
+                <td>50%</td>
+                <td>—</td>
+                <td>~US$ 925 bi</td>
+                <td>Déficit leve</td>
+                <td>US$ 220 bi</td>
+                <td>Própria ($)</td>
+                <td>Disciplina fiscal relativa; nearshoring</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td class="data-table__label">Paraguai</td>
+                <td>América S.</td>
+                <td>6,8 mi</td>
+                <td>US$ 48 bi</td>
+                <td>45%</td>
+                <td>—</td>
+                <td>~US$ 22 bi</td>
+                <td>Equilíbrio</td>
+                <td>US$ 10 bi</td>
+                <td>Própria (₲)</td>
+                <td>Itaipu; economia pequena e estável</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td class="data-table__label">Chile</td>
+                <td>América S.</td>
+                <td>19 mi</td>
+                <td>US$ 330 bi</td>
+                <td>42%</td>
+                <td>—</td>
+                <td>~US$ 139 bi</td>
+                <td>Déficit</td>
+                <td>US$ 45 bi</td>
+                <td>Própria ($)</td>
+                <td>Menor dívida/PIB entre as grandes economias sul-americanas</td>
+              </tr>
+              <tr>
+                <td>19</td>
+                <td class="data-table__label">Peru</td>
+                <td>América S.</td>
+                <td>34 mi</td>
+                <td>US$ 280 bi</td>
+                <td>33%</td>
+                <td>—</td>
+                <td>~US$ 92 bi</td>
+                <td>Déficit leve</td>
+                <td>US$ 78 bi</td>
+                <td>Própria (S/)</td>
+                <td>Regras fiscais; volatilidade política recente</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td class="data-table__label">Indonésia</td>
+                <td>Ásia</td>
+                <td>278 mi</td>
+                <td>US$ 1,4 tri</td>
+                <td>40%</td>
+                <td>—</td>
+                <td>~US$ 560 bi</td>
+                <td>Déficit</td>
+                <td>US$ 150 bi</td>
+                <td>Própria (Rp)</td>
+                <td>Emergente populoso; commodities</td>
+              </tr>
+              <tr>
+                <td>21</td>
+                <td class="data-table__label">Austrália</td>
+                <td>Oceania</td>
+                <td>26 mi</td>
+                <td>US$ 1,7 tri</td>
+                <td>51%</td>
+                <td>32%</td>
+                <td>~US$ 870 bi</td>
+                <td>Déficit</td>
+                <td>—</td>
+                <td>Própria (A$)</td>
+                <td>Commodities; AAA histórico</td>
+              </tr>
+              <tr>
+                <td>22</td>
+                <td class="data-table__label">Rússia</td>
+                <td>Europa/Ásia</td>
+                <td>144 mi</td>
+                <td>US$ 2,0 tri</td>
+                <td>18%</td>
+                <td>—</td>
+                <td>~US$ 360 bi</td>
+                <td>Superávit (2022–24)</td>
+                <td>US$ 590 bi</td>
+                <td>Própria (₽)</td>
+                <td>Receita de petróleo; sancões e isolamento financeiro</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-card__scroll-hint" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          Deslize horizontalmente para ver todas as colunas
+        </p>
+        <p class="chart-card__footnote" style="padding: var(--space-md) var(--space-xl);">Fontes: FMI (WEO out/2025) · BCB (DBGG/DLSP dez/2025) · Tesouro Nacional · Banco Mundial (PIB e população, 2024) · Trading Economics · Dívida absoluta estimada (dívida/PIB × PIB). Reservas: BCB/IMF, 2024–2025.</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Leitura do ranking</h4>
+        <p>O Brasil ocupa posição <strong>intermediária no ranking global</strong>: abaixo de EUA, Japão e grandes europeus, mas acima de México, Chile e Peru. Na América do Sul, fica atrás de Bolívia, Argentina e Suriname (87%), sendo a <strong>3ª maior dívida/PIB entre economias comparáveis</strong> — embora tenha escala (213 milhões de habitantes, PIB de US$ 2,2 tri) e reservas internacionais robustas (US$ 355 bi).</p>
+        <p>Comparar apenas o percentual pode enganar: o Japão com 230% convive com juros controlados e moeda de carry trade; a Argentina com 83% tem histórico de default e reservas baixas. O custo real da dívida brasileira — Selic a 14,50% — torna cada ponto de déficit primário mais pesado do que em economias com juros próximos de zero. A sustentabilidade depende de <strong>crescimento do PIB</strong>, <strong>resultado primário</strong> e <strong>credibilidade institucional</strong>, não só do número absoluto.</p>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Fake News vs. Realidade
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"A dívida pública é uma invenção para roubar o povo"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>A dívida pública é um <strong>instrumento legítimo de financiamento</strong> do Estado, presente em todas as economias do mundo.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"O governo atual gastou mais que todos os outros juntos"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O déficit de R$ 61,7 bilhões precisa ser avaliado <strong>em relação ao PIB</strong> e ao contexto histórico para uma comparação precisa.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"O Brasil vai quebrar"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Alertas existem, mas o Brasil continua honrando seus compromissos e possui <strong>reservas internacionais significativas</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resultado Primário -->
+      <h3 class="subsection-title reveal">Resultado Primário — Déficit e Superávit</h3>
+
+      <div class="chart-card chart-card--wide reveal">
+        <h3 class="chart-card__title">Resultado Primário do Governo Central</h3>
+        <p class="chart-card__subtitle">Déficit (−) e superávit (+) anual · R$ bilhões</p>
+        <div class="chart-card__canvas-wrap chart-card__canvas-wrap--short">
+          <canvas id="chartResultadoPrimario" role="img" aria-label="Gráfico de barras divergentes do resultado primário do Governo Central: déficits de 154 bilhões em 2016 a superávit de 59 bilhões em 2022, retornando a déficit em 2023–2025"></canvas>
+        </div>
+        <p class="chart-card__footnote">Fonte: Tesouro Nacional / STN · Valores anuais fechados (2016–2025) · R$ bilhões, nominal</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Leitura do gráfico</h4>
+        <p>Entre 2016 e 2019, o resultado primário do Governo Central já era deficitário, refletindo um quadro fiscal estruturalmente frágil, com crescimento econômico baixo, arrecadação limitada e despesas obrigatórias em alta, mas sem choques extraordinários como pandemia ou grandes pacotes eleitorais. Em 2020, esse quadro se agrava de forma inédita: a pandemia de Covid‑19 leva à adoção do “orçamento de guerra”, expansão maciça de gastos emergenciais (auxílio, saúde, apoio a estados e municípios) e forte queda da atividade econômica, produzindo o maior déficit da série histórica, em torno de <strong>R$ 743 bilhões</strong>.</p>
+        <p>A partir de 2021, com redução dos gastos emergenciais e retomada parcial da economia, o déficit recua de forma significativa, chegando a cerca de <strong>R$ 35,9 bilhões</strong>, e em 2022 há superávit em torno de <strong>0,6% do PIB</strong>, sinalizando uma melhora temporária das contas públicas. No entanto, esse período coincide com decisões de governo de forte caráter eleitoral: o então presidente Jair Bolsonaro amplia e cria benefícios sociais (como o Auxílio Brasil de R$ 600, Auxílio Caminhoneiro, Auxílio Taxista, reforço do Vale‑Gás etc.), por meio de PEC que flexibiliza regras fiscais, aumenta o número de beneficiários e abre espaço para gastos fora do teto, ao mesmo tempo em que posterga o pagamento de precatórios via emenda constitucional.</p>
+        <p>Em 2023, já na gestão seguinte, o déficit volta a se aprofundar e atinge cerca de <strong>R$ 230,5 bilhões</strong> (aproximadamente 2,1% do PIB), o segundo pior resultado da série, em grande medida porque o novo governo precisa pagar a “conta” acumulada. O Tesouro Nacional aponta que o rombo está diretamente ligado à quitação do estoque de precatórios que havia sido empurrado pelo governo anterior e às compensações a estados e municípios pelas perdas de ICMS em combustíveis, medidas adotadas em 2022, além de um patamar elevado de gastos sociais e obrigatórios e crescimento real expressivo das despesas frente à receita líquida.</p>
+        <p>Nos anos seguintes, 2024 e 2025, o resultado permanece negativo, ainda pressionado pelas obrigações herdadas e pela necessidade de acomodar políticas sociais ampliadas dentro de um novo arcabouço fiscal que busca recompor metas de resultado e estabilizar a dívida pública. Em síntese, o gráfico evidencia três movimentos principais: um déficit estrutural pré‑pandemia; o “abismo” de 2020, causado pelo choque sanitário e econômico; e uma segunda deterioração em 2023, não por nova crise, mas pela materialização das decisões políticas tomadas no ciclo eleitoral anterior e das dívidas que foram adiadas e precisaram ser pagas posteriormente.</p>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Mitos sobre Resultado Primário
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"O governo está quebrando o país com gastos"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O déficit de R$ 61,7 bi precisa ser avaliado em relação ao PIB e ao contexto econômico. Há déficit, mas <strong>não configura "quebra"</strong> do Estado.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>"Superávit primário é sempre bom"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Superávit em momentos de recessão pode <strong>agravar a crise</strong>, pois significa retirada de recursos da economia.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>"Déficit primário é sempre ruim"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Déficits podem ser necessários em momentos de crise para <strong>estimular a economia</strong>, desde que temporários e controlados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>A dívida pública brasileira é alta e merece atenção, mas <strong>narrativas catastróficas ignoram a complexidade</strong> do tema. A sustentabilidade depende de crescimento do PIB, taxa de juros, resultado primário e capacidade de rolagem — e de como o Brasil se compara a pares internacionais, como mostra o ranking acima. Países desenvolvidos convivem com endividamento elevado há décadas; o desafio brasileiro é combinar crescimento com ajuste fiscal em um contexto de juros reais altos.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Dívida Pública">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Banco Central</span>
+              <span class="section-sources__name">Boletim de Estatísticas Fiscais — dez/2025</span>
+            </a>
+            <span class="section-sources__data">Confirma: DBGG 78,7% do PIB (R$ 10 tri) · DLSP 65,3% · pico 87,6% (dez/2020)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/janeiro/governo-central-cumpre-com-folga-a-meta-fiscal-estabelecida-para-2025-aponta-relatorio-do-tesouro" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Tesouro Nacional / STN</span>
+              <span class="section-sources__name">Resultado primário do Governo Central — 2025</span>
+            </a>
+            <span class="section-sources__data">Confirma: déficit nominal R$ 61,7 bi (0,48% do PIB) · série 2016–2025 do gráfico</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.imf.org/en/Publications/WEO" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">FMI</span>
+              <span class="section-sources__name">World Economic Outlook (out/2025) — dívida bruta geral do governo</span>
+            </a>
+            <span class="section-sources__data">Confirma: comparativos internacionais (Japão 230% · EUA 124% · Brasil 93,4% critério FMI)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Banco Mundial</span>
+              <span class="section-sources__name">PIB e população por país (2024)</span>
+            </a>
+            <span class="section-sources__data">Confirma: escala econômica e população na tabela comparativa internacional</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 5. ENDIVIDAMENTO ═══════════════════ -->
+  <section class="section" id="endividamento">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Endividamento das Famílias</h2>
+        <p class="section-header__subtitle">Recorde histórico, cartão de crédito, bets e proteção a beneficiários de programas sociais</p>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Famílias Endividadas em 2026</h3>
+          <p class="chart-card__subtitle">Percentual mensal</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartEndividamento" role="img" aria-label="Gráfico de linha: percentual de famílias endividadas subindo de 80,4% em março a recorde de 81,6% em maio-junho de 2026"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: CNC / PEIC · % de famílias com alguma dívida · Mar–Jun/2026 · Série mensal comparável</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Perfil do Endividamento</h3>
+          <p class="chart-card__subtitle">Distribuição por categoria</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartPerfilDivida" role="img" aria-label="Gráfico de rosca do perfil de endividamento: 84,6% cartão de crédito, 23% muitas dívidas, 46% pouco endividadas"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: CNC / PEIC · Maio/2026 · Categorias não excludentes (% sobre endividados)</p>
+        </div>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">81,6%</span>
+          <span class="data-highlight__text">Recorde histórico de famílias endividadas (mai-jun/2026)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">49,9%</span>
+          <span class="data-highlight__text">endividamento/renda anual — também recorde (PEIC, abr/2026)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">12,3%</span>
+          <span class="data-highlight__text">declaram não ter condição de quitar dívidas em atraso</span>
+        </div>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">84,6%</span>
+          <span class="data-highlight__text">das dívidas são no cartão de crédito (PEIC, mai/2026)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">82,5%</span>
+          <span class="data-highlight__text">do endividamento está em famílias com até 3 salários mínimos</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">270 mil</span>
+          <span class="data-highlight__text">famílias em inadimplência severa associada a bets (CNC, 2023–2026)</span>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>O endividamento recorde das famílias é um dos <strong>problemas mais graves da economia brasileira</strong> em 2026, afetando principalmente as camadas mais pobres. Segundo a PEIC/CNC, em abril de 2026 a relação endividamento/renda atingiu <strong>49,9%</strong> — metade da renda anual das famílias já comprometida com dívidas — e <strong>12,3%</strong> declararam não ter condições de quitar o que devem. O Desenrola, embora tenha trazido algum alívio, teve alcance limitado: beneficiou apenas cerca de 10% da população endividada.</p>
+        <p>Paralelamente, a expansão das apostas online — bets reguladas, sites ilegais e jogos clandestinos como o “tigrinho” — entrou no debate público como possível agravante do quadro. Dados oficiais do mercado regulado (SPA/MF) e estudos da CNC apontam magnitudes distintas, mas convergem no risco para famílias de baixa renda.</p>
+      </div>
+
+      <!-- Apostas e endividamento -->
+      <h3 class="subsection-title reveal">Apostas, bets e jogos ilegais</h3>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Mercado regulado de bets (2025)</h3>
+          <p class="chart-card__subtitle">Indicadores oficiais · SPA/MF e Receita Federal</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartApostasMercado" role="img" aria-label="Gráfico de barras do mercado regulado de bets em 2025: 25,2 milhões de apostadores, GGR de 37 bilhões, arrecadação de 9,95 bilhões, 79 empresas e 25 mil sites bloqueados"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: SPA/MF · Sigap · Receita Federal · Acumulado jan–dez/2025 · GGR = receita bruta antes de prêmios</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Gasto mensal dos apostadores</h3>
+          <p class="chart-card__subtitle">Distribuição por faixa · mercado regulado</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartApostadoresGasto" role="img" aria-label="Gráfico de rosca: 53,3% dos apostadores gastam até 50 reais por mês; fatia menor concentra gastos acima de 300 reais"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: SPA/MF · Sigap · Dados obtidos via LAI · Mercado regulado, 2025</p>
+        </div>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">25,2 mi</span>
+          <span class="data-highlight__text">de brasileiros apostaram em bets reguladas em 2025 (SPA/MF)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">R$ 37 bi</span>
+          <span class="data-highlight__text">de GGR (receita bruta) no mercado autorizado em 2025</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">R$ 143 bi</span>
+          <span class="data-highlight__text">estimados retirados do varejo por inadimplência ligada a bets (CNC, jan/2023–mar/2026)</span>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Leitura: bets, tigrinho e endividamento</h4>
+        <p>Em janeiro de 2025 entrou em vigor plenamente o mercado regulado de apostas de quota fixa (Lei nº 14.790/2023). Segundo a Secretaria de Prêmios e Apostas (SPA/MF), <strong>79 empresas autorizadas</strong> reportaram <strong>25,2 milhões de apostadores</strong> ao longo de 2025, com receita bruta (GGR) de cerca de <strong>R$ 37 bilhões</strong>. A Receita Federal arrecadou <strong>R$ 9,95 bilhões</strong> com o setor no ano — incluindo tributos federais e os 12% de destinações legais (R$ 4,5 bi).</p>
+        <p>Do total de apostadores regulados, <strong>53,3%</strong> gastam até R$ 50 por mês — perfil compatível com entretenimento ocasional. Porém, uma fatia relevante concentra gastos elevados, e o mercado ilegal permanece expressivo: a Anatel bloqueou <strong>mais de 25 mil sites</strong> não autorizados; a SPA abriu processos contra influenciadores e, com 54 instituições financeiras, encerrou <strong>550 contas bancárias</strong> ligadas a operadores irregulares. Jogos clandestinos — popularmente chamados de “tigrinho” — operam nesse mercado paralelo, fora do Sigap e sem proteções ao consumidor.</p>
+        <p>Em estudo próprio divulgado em abril/2026, a CNC estima que, entre jan/2023 e mar/2026, a inadimplência associada a gastos com bets retirou <strong>R$ 143 bilhões</strong> do varejo e teria levado cerca de <strong>270 mil famílias</strong> à inadimplência severa (atraso acima de 90 dias). O IBJR (setor regulado) contesta a metodologia; a LCA Consultores, usando dados oficiais, calcula que o gasto com bets reguladas representa cerca de <strong>0,46% do consumo familiar</strong>. As duas leituras coexistem no debate — mas famílias endividadas, homens, pessoas acima de 35 anos e rendas de até 5 salários mínimos aparecem como grupos mais vulneráveis na análise da CNC.</p>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Narrativas sobre bets e endividamento
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>"Bets não afetam o endividamento das famílias"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>A CNC estima impacto de <strong>R$ 143 bi no varejo</strong> e 270 mil famílias em inadimplência severa (2023–2026). O setor contesta, mas dados oficiais confirmam milhões de apostadores e gastos relevantes.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>"Todo apostador gasta fortunas e fica endividado"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Dados oficiais (SPA/MF) mostram que <strong>mais da metade</strong> dos apostadores regulados gasta até R$ 50/mês. O problema concentra-se em grupos vulneráveis e no mercado ilegal.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>"Beneficiários do Bolsa Família podem apostar normalmente"</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Decisão do STF proíbe <strong>todos os 27 milhões</strong> de beneficiários de BF/BPC de se cadastrar em bets. Quem já tinha conta teve acesso bloqueado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coerção e proteção -->
+      <h3 class="subsection-title reveal">Coerção e proteção — programas sociais e plataformas</h3>
+
+      <div class="chart-card chart-card--wide reveal">
+        <h3 class="chart-card__title">Ações de fiscalização e bloqueio (2025–2026)</h3>
+        <p class="chart-card__subtitle">Medidas oficiais contra apostas por beneficiários e mercado ilegal</p>
+        <div class="chart-card__canvas-wrap chart-card__canvas-wrap--short">
+          <canvas id="chartCoercaoApostas" role="img" aria-label="Gráfico de barras das ações de bloqueio: 27 milhões de beneficiários BF/BPC proibidos, 2,8 milhões com contas encerradas, 925 mil autoexclusões e 25 mil sites ilegais bloqueados"></canvas>
+        </div>
+        <p class="chart-card__footnote">Fonte: SPA/MF · STF · jul/2026 (BF/BPC) · Demais indicadores acumulados 2025 · Escala logarítmica no gráfico</p>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--danger">
+          <span class="data-highlight__number">2,8 mi</span>
+          <span class="data-highlight__text">beneficiários de BF/BPC tiveram contas encerradas nas bets (10,4% dos 27 mi)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--warning">
+          <span class="data-highlight__number">925 mil</span>
+          <span class="data-highlight__text">pedidos de autoexclusão na plataforma centralizada (desde dez/2025)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">25 mil+</span>
+          <span class="data-highlight__text">sites ilegais bloqueados pela Anatel a pedido da SPA</span>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Como funciona o bloqueio</h4>
+        <p>Em cumprimento a decisão do STF, o governo integrou a base de beneficiários do Bolsa Família e do BPC ao <strong>Sigap</strong> (Sistema de Gestão de Apostas). As 79 empresas autorizadas consultam o CPF no cadastro, no login e em <strong>checagens quinzenais</strong>. Se o usuário for beneficiário, o cadastro é negado; contas existentes devem ser encerradas em até 3 dias, com devolução de saldo.</p>
+        <p>Paralelamente, a <strong>Plataforma Centralizada de Autoexclusão</strong> (gov.br, desde dezembro/2025) permite que qualquer cidadão bloqueie seu CPF em todas as casas reguladas de uma só vez — por 1 a 12 meses ou prazo indeterminado. Até julho/2026, <strong>925 mil pessoas</strong> haviam solicitado o bloqueio voluntário. A IN SPA/MF nº 22/2025 regulamenta a proibição; novas regras de publicidade (advertências obrigatórias) entraram em vigor em jul/2026.</p>
+        <p>Contra o mercado ilegal — incluindo sites de “tigrinho” — a SPA atua com bloqueio de domínios (Anatel), monitoramento de transações financeiras, notificação de fintechs e encerramento de contas bancárias de operadores não autorizados. A meta declarada é canalizar a demanda para o mercado regulado, onde há tributação, limites de publicidade e mecanismos de proteção ao consumidor.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Endividamento">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/janeiro/em-um-ano-de-mercado-regulado-spa-registra-mais-de-25-mil-sites-ilegais-bloqueados" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">SPA / Ministério da Fazenda</span>
+              <span class="section-sources__name">Balanço do mercado regulado de apostas — 2025 (Sigap)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 25,2 mi apostadores · GGR R$ 37 bi · arrecadação R$ 9,95 bi · 79 empresas · 25 mil+ sites bloqueados</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://valor.globo.com/brasil/noticia/2026/06/10/parcela-de-endividados-bate-novamente-recorde-historico-em-maio-diz-cnc.ghtml" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">CNC / PEIC</span>
+              <span class="section-sources__name">Pesquisa de Endividamento e Inadimplência do Consumidor — maio/2026</span>
+            </a>
+            <span class="section-sources__data">Confirma: 81,6% endividadas (recorde) · 84,6% com cartão de crédito · 12,3% sem condição de quitar</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">SPA / STF</span>
+              <span class="section-sources__name">Bloqueio de BF/BPC em plataformas de apostas (jul/2026)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 27 mi beneficiários proibidos · 2,8 mi contas encerradas · 925 mil autoexclusões voluntárias</span>
+          </li>
+        </ul>
+        <p class="section-sources__note">Estimativas da CNC sobre impacto de bets no varejo (R$ 143 bi) são estudo próprio da entidade — distintas dos dados oficiais do Sigap. Ambas as leituras estão identificadas no texto.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 6. INCENTIVOS CULTURAIS ═══════════════════ -->
+  <section class="section section--alt" id="cultura">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Lei Rouanet e Incentivos à Cultura</h2>
+        <p class="section-header__subtitle">Mecanismos de fomento, retorno econômico-social e desinformação sobre políticas culturais</p>
+      </div>
+
+      <div class="context-box reveal">
+        <div class="context-box__label">Como funciona o incentivo fiscal à cultura</div>
+        <div class="grid grid--3 grid--compact">
+          <div class="concept-card">
+            <h4>Lei 8.313/91 (Rouanet)</h4>
+            <p>Principal mecanismo federal: empresas e pessoas físicas destinem parte do <strong>Imposto de Renda devido</strong> a projetos culturais aprovados. O Estado renuncia à arrecadação — não há repasse em dinheiro vivo do Tesouro ao artista.</p>
+          </div>
+          <div class="concept-card">
+            <h4>SALIC e fiscalização</h4>
+            <p>Projetos passam por análise técnica no <strong>SALIC</strong> (Sistema de Apoio às Leis de Incentivo à Cultura). Execução exige notas fiscais, comprovantes e prestação de contas — auditável por qualquer cidadão no VerSalic.</p>
+          </div>
+          <div class="concept-card">
+            <h4>Outras leis de incentivo</h4>
+            <p><strong>Lei do Audiovisual</strong> (8.685/93), <strong>PROAC</strong> (incentivo estadual, ex.: São Paulo), <strong>PNAB</strong> (repasse direto a estados e municípios) e leis locais completam o ecossistema de fomento à cultura no Brasil.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Por que a sociedade como um todo se beneficia</h4>
+        <p>Incentivos à cultura não são “privilégio de artistas”: funcionam como <strong>política de desenvolvimento econômico</strong> que mobiliza cadeias produtivas inteiras. Segundo a Pesquisa de Impacto Econômico da Lei Rouanet (FGV/OEI, 2024), os projetos executados movimentaram <strong>R$ 25,7 bilhões</strong> na economia, geraram ou mantiveram <strong>228 mil empregos</strong> e alcançaram cerca de <strong>89,3 milhões de pessoas</strong> — quase metade da população brasileira.</p>
+        <p>O mecanismo distribui recursos por <strong>81 mil fornecedores</strong> em 2024: transporte, alimentação, hospedagem, cenografia, audiovisual, gráficas, segurança, tecnologia. Estudos anteriores da FGV (2018) já identificavam impacto em <strong>68 atividades econômicas</strong> distintas. A economia da cultura e das indústrias criativas representa cerca de <strong>3,11% do PIB</strong> e emprega <strong>7,4 milhões de pessoas</strong> — proporção superior à indústria automobilística (2,1%) <span class="source">(MinC, 2023)</span>.</p>
+        <p>Além do efeito econômico, contrapartidas sociais (ingressos populares, oficinas gratuitas, circulação em periferias) ampliam <strong>acesso democrático</strong> a bens culturais. Pesquisas acadêmicas em Minas Gerais e relatórios do BID associam gastos com difusão cultural a <strong>melhorias em indicadores de criminalidade e escolaridade</strong> — não como substituto da segurança pública, mas como política preventiva de longo prazo <span class="source">(ver seção internacional abaixo)</span>.</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Correlações numéricas — como o multiplicador funciona</h4>
+        <p>A lógica do incentivo fiscal é simples de verificar: por cada <strong>R$ 1,00 de renúncia fiscal</strong> em 2024, a FGV estima <strong>R$ 7,59 movimentados</strong> na economia (efeito direto + indireto + gastos do público) e <strong>R$ 1,39 retornando aos cofres públicos</strong> em tributos municipais, estaduais e federais — ou seja, <strong>R$ 3,9 bilhões</strong> em arrecadação gerada a partir de renúncia efetiva de <strong>R$ 3,0 bilhões</strong>.</p>
+        <p>Em termos de emprego: a cada <strong>R$ 12,3 mil</strong> investidos via Rouanet, sustenta-se <strong>1 posto de trabalho</strong> (152,7 mil diretos + 75,3 mil indiretos). Quase <strong>90% dos pagamentos</strong> registrados ficaram abaixo de R$ 10 mil; <strong>78,5%</strong> abaixo de R$ 5 mil — perfil compatível com micro e pequenos prestadores, não apenas grandes produções.</p>
+        <p>Em perspectiva orçamentária: a renúncia Rouanet de R$ 3 bi em 2024 equivale a cerca de <strong>0,66%</strong> do total de renúncias fiscais federais (R$ 456 bi em 2023) e a fração mínima do PIB. O teto de renúncia previsto na LOA 2025 é de <strong>R$ 2,9 bi</strong> — não R$ 15 ou R$ 16 bi, como viralizam posts falsos <span class="source">(Aos Fatos, Lupa, MinC)</span>.</p>
+      </div>
+
+      <div class="data-highlight reveal">
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">R$ 7,59</span>
+          <span class="data-highlight__text">retorno na economia para cada R$ 1 de renúncia fiscal (FGV, 2024)</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">228 mil</span>
+          <span class="data-highlight__text">empregos diretos e indiretos gerados ou mantidos em 2024</span>
+        </div>
+        <div class="data-highlight__item data-highlight__item--neutral">
+          <span class="data-highlight__number">R$ 3,9 bi</span>
+          <span class="data-highlight__text">em tributos arrecadados — R$ 1,39 para cada R$ 1 renunciado</span>
+        </div>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Renúncia fiscal efetiva — Lei Rouanet</h3>
+          <p class="chart-card__subtitle">Valores captados e executados (R$ bi)</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartRouanetCaptacao" role="img" aria-label="Gráfico de linha da renúncia fiscal efetiva da Lei Rouanet: queda a 1,3 bilhão em 2016, recuperação a 3 bilhões em 2024, primeiro aumento real desde 2011"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: SALIC/MinC, Itaú Cultural (2010–2020), FGV (2024) · Valores efetivamente captados · 2017–2019 e 2021: estimativas SALIC*</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Multiplicador econômico (2024)</h3>
+          <p class="chart-card__subtitle">Retorno por R$ 1,00 de renúncia fiscal</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartRouanetRetorno" role="img" aria-label="Gráfico de barras: para cada real de renúncia fiscal, 7,59 reais movimentados na economia e 1,39 reais em tributos arrecadados em 2024"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: Pesquisa de Impacto Econômico da Lei Rouanet — FGV/OEI, jan/2026 · Metodologia ampliada vs. estudo 2018 (R$ 1,59)</p>
+        </div>
+      </div>
+
+      <div class="grid grid--2 reveal">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Perfil dos gastos em projetos (2024)</h3>
+          <p class="chart-card__subtitle">Distribuição por faixa de valor</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartRouanetGastos" role="img" aria-label="Gráfico de rosca: 78,5% dos gastos da Lei Rouanet abaixo de 5 mil reais e 90% abaixo de 10 mil reais"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: FGV/OEI (2024) · Pagamentos registrados na execução de 4.939 projetos · 567 mil transações</p>
+        </div>
+        <div class="chart-card">
+          <h3 class="chart-card__title">Economia criativa vs. renúncia Rouanet</h3>
+          <p class="chart-card__subtitle">Escala relativa (2024, R$ bi)</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="chartCulturaEscala" role="img" aria-label="Gráfico comparativo: PIB da economia criativa estimado em centenas de bilhões versus renúncia Rouanet de 3 bilhões e arrecadação tributária gerada de 3,9 bilhões"></canvas>
+          </div>
+          <p class="chart-card__footnote">Fonte: MinC (PIB cultural 3,11%), FGV (2024) · PIB cultural ≈ R$ 220 bi* (estimativa sobre PIB 2024 ~R$ 11 tri)</p>
+        </div>
+      </div>
+
+      <div class="factcheck reveal">
+        <h3 class="factcheck__heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Fake News vs. Realidade — Lei Rouanet e fomento cultural
+        </h3>
+        <div class="factcheck__cards">
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>“O governo liberou R$ 16 bilhões para artistas via Rouanet”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Em 2023, <strong>R$ 16,7 bi</strong> foi o teto <em>autorizado para captação</em> junto a patrocinadores — não dinheiro transferido pelo Tesouro. A renúncia fiscal <strong>efetiva</strong> foi de <strong>R$ 2,3 bi</strong> <span class="source">(Lupa, MinC, SALIC)</span>.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>“Lei Rouanet é dinheiro público direto para artistas famosos”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>O mecanismo é <strong>mecenato fiscal</strong>: empresas abatem IR devido. Em 2024, <strong>78,5%</strong> dos gastos foram inferiores a R$ 5 mil, pagos a <strong>81 mil fornecedores</strong> — técnicos, gráficas, transportadoras, pequenos produtores <span class="source">(FGV, 2024)</span>.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>“Incentivo à cultura não gera retorno — é prejuízo para o país”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Para cada R$ 1 renunciado em 2024, estima-se <strong>R$ 7,59</strong> na economia e <strong>R$ 1,39</strong> de volta em impostos — saldo fiscal positivo na arrecadação induzida <span class="source">(FGV/OEI, 2024)</span>.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Fake News</span>
+              <p>“Governo Lula destinou R$ 15 bi à Rouanet em 2025”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>A LOA 2025 prevê teto de renúncia de <strong>R$ 2,9 bi</strong> — não R$ 15 bi. Confunde-se autorização de captação, repasse da PNAB (até R$ 3 bi/ano para entes federativos) e despesas diretas do MinC <span class="source">(Aos Fatos, 2025)</span>.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>“Projetos culturais não têm fiscalização — é farra sem controle”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Execução exige <strong>notas fiscais no SALIC</strong>, pareceres técnicos, contrapartidas e prestação de contas. Irregularidades existem (como em qualquer política pública), mas o sistema é <strong>transparente e auditável</strong> — dados abertos desde 2017 <span class="source">(dados.cultura.gov.br)</span>.</p>
+            </div>
+          </div>
+          <div class="factcheck__card">
+            <div class="factcheck__fake">
+              <span class="factcheck__tag factcheck__tag--fake">Mito</span>
+              <p>“Cultura não combate violência — é luxo dispensável”</p>
+            </div>
+            <div class="factcheck__real">
+              <span class="factcheck__tag factcheck__tag--real">Realidade</span>
+              <p>Estudos em MG, relatórios do BID e experiências internacionais (Medellín, Ciudad Juárez) associam <strong>investimento cultural e urbano</strong> a quedas expressivas de homicídios — como complemento a políticas de segurança, não substituto <span class="source">(ver comparativo abaixo)</span>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title reveal">Cultura, violência e exemplos internacionais</h3>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Investimento cultural como política de prevenção</h4>
+        <p>Correlação não é causalidade — e nenhuma biblioteca substitui investigação policial. Mas a literatura acumulada mostra que <strong>acesso a cultura, educação e espaços públicos de qualidade</strong> altera trajetórias individuais e comunitárias, especialmente entre jovens em territórios vulneráveis. O BID, no relatório <em>Antípodas da Violência</em>, argumenta que reduzir homicídios na América Latina exige transformar <strong>cultura cidadã</strong> — crenças e comportamentos — além de repressão e desigualdade.</p>
+        <p><strong>Medellín (Colômbia):</strong> nos anos 1990, chegou a ~395 homicídios por 100 mil habitantes. A partir de 2004, o “urbanismo social” integrou Metrocable, <strong>Parques Biblioteca</strong>, escolas e UVA (centros culturais em antigos reservatórios) às comunas periféricas. A taxa caiu para cerca de <strong>20 homicídios/100 mil</strong> — redução superior a 90% em duas décadas. Pesquisas acadêmicas indicam quedas mais acentuadas nos bairros com intervenções culturais e de infraestrutura do que em áreas de controle <span class="source">(SciELO, EURE, BID)</span>.</p>
+        <p><strong>Ciudad Juárez (México):</strong> considerada uma das cidades mais violentas do mundo em 2010 (~130 homicídios/100 mil), implementou o programa <em>Todos somos Juárez</em>, com forte peso em educação, cultura e esporte. Em 15 anos, os homicídios caíram mais de <strong>90%</strong>, em conjunto com reformas institucionais — cultura como eixo de reconstrução social, não ornamentação.</p>
+        <p><strong>Reino Unido:</strong> estações de metrô e centros urbanos passaram a usar <strong>música clássica ao vivo</strong> como estratégia ambiental. Transport for London reportou queda de cerca de <strong>33% em assaltos</strong> e <strong>25% em agressões a funcionários</strong> em linhas piloto — efeito atribuído à modulação do comportamento coletivo no espaço público.</p>
+        <p><strong>Brasil — Minas Gerais:</strong> estudo com análise envoltória (DEA) em 104 municípios mineiros encontrou que gastos per capita com <strong>difusão cultural</strong> associam-se a maior eficiência na redução de criminalidade patrimonial e de menor porte, além de efeitos positivos sobre escolaridade. Outro trabalho (2013–2017) estimou impacto negativo dos gastos culturais sobre <strong>taxas de tráfico de drogas</strong> municipais — via fortalecimento de laços sociais e controle comunitário <span class="source">(Gestão &amp; Regionalidade; Rev. Estudos Regionais e Urbanos)</span>.</p>
+        <p><strong>Programas brasileiros:</strong> iniciativas como <em>Bahia Pela Paz</em> e editais de cultura comunitária financiam coletivos em áreas de alta vulnerabilidade, alinhando fomento cultural à prevenção da violência entre jovens — modelo replicável dentro das leis de incentivo existentes.</p>
+      </div>
+
+      <div class="chart-card reveal">
+        <h3 class="chart-card__title">Taxa de homicídios — antes e depois de políticas cultura-urbanas</h3>
+        <p class="chart-card__subtitle">Homicídios por 100 mil habitantes · casos emblemáticos</p>
+        <div class="chart-card__canvas-wrap chart-card__canvas-wrap--short">
+          <canvas id="chartCulturaViolencia" role="img" aria-label="Gráfico de barras comparando taxas de homicídio por 100 mil habitantes: Medellín caiu de 395 para 20, Ciudad Juárez de 130 para 15, Brasil nacional 20,1 em 2024"></canvas>
+        </div>
+        <p class="chart-card__footnote">Fontes: Educação e Território (Medellín); literatura criminológica (Juárez); Atlas da Violência 2026 (Brasil) · Valores aproximados de picos históricos vs. períodos recentes · Políticas combinam cultura, urbanismo, educação e segurança</p>
+      </div>
+
+      <h3 class="subsection-title reveal">Comparativo internacional — investimento cultural e contexto</h3>
+
+      <p class="data-note reveal">Tabela comparativa de políticas, escala de investimento e indicadores de violência. Investimento cultural raramente é isolável de outras variáveis; os dados ilustram associações documentadas, não causalidade única.</p>
+
+      <div class="table-card reveal">
+        <div class="table-card__scroll">
+          <table class="data-table debt-rank-table debt-rank-table--compare">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Local</th>
+                <th>Política / instrumento</th>
+                <th>Investimento</th>
+                <th>Homicídios (pico)</th>
+                <th>Homicídios (recente)</th>
+                <th>Variação</th>
+                <th>Mecanismo</th>
+                <th>Fonte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td class="data-table__label col-local">Medellín (COL)</td>
+                <td class="col-text">Urbanismo social + Parques Biblioteca</td>
+                <td class="col-text-wide">Metrocable, 9 parques-biblioteca, UVA culturais</td>
+                <td>~395/100 mil (1990s)</td>
+                <td>~20/100 mil (2015–20)</td>
+                <td>−95%*</td>
+                <td class="col-text-wide">Espaços públicos seguros, oficinas artísticas, integração territorial</td>
+                <td class="col-source">SciELO; BID; EURE</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="data-table__label col-local">Ciudad Juárez (MEX)</td>
+                <td class="col-text">Todos somos Juárez</td>
+                <td class="col-text-wide">US$ 400 mi+ (educação, cultura, esporte)</td>
+                <td>~130/100 mil (2010)</td>
+                <td>~15/100 mil (2019)</td>
+                <td>−88%*</td>
+                <td class="col-text-wide">Reconstrução social pós-conflito cartel/Estado</td>
+                <td class="col-source">Literatura criminológica</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="data-table__label col-local">Londres (GBR)</td>
+                <td class="col-text">Música clássica em transporte</td>
+                <td class="col-text">Piloto TfL (baixo custo operacional)</td>
+                <td>Baseline linhas piloto</td>
+                <td>Pós-intervenção</td>
+                <td>−33% assaltos*</td>
+                <td class="col-text">Modulação comportamental no espaço público</td>
+                <td class="col-source">Transport for London</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="data-table__label col-local">MG — 104 municípios (BRA)</td>
+                <td class="col-text">Gastos per capita difusão cultural</td>
+                <td class="col-text">Orçamentos locais cultura</td>
+                <td>—</td>
+                <td>Maior eficiência DEA</td>
+                <td>↓ criminalidade*</td>
+                <td class="col-text">Laços sociais, controle comunitário</td>
+                <td class="col-source">Gestão &amp; Regionalidade</td>
+              </tr>
+              <tr class="data-table__row--highlight">
+                <td>5</td>
+                <td class="data-table__label col-local">Brasil (federal)</td>
+                <td class="col-text">Lei Rouanet + PNAB + Audiovisual</td>
+                <td class="col-text-wide">Renúncia R$ 3 bi (2024); PIB cultural 3,11%</td>
+                <td>—</td>
+                <td>20,1/100 mil (2024)</td>
+                <td>−31,9% homic. 2016–24</td>
+                <td class="col-text-wide">Mecenato fiscal; 228 mil empregos; 89 mi público</td>
+                <td class="col-source">FGV; Atlas 2026</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="data-table__label col-local">França</td>
+                <td class="col-text">Ministério da Cultura</td>
+                <td class="col-text">~0,7% despesa pública estatal</td>
+                <td>—</td>
+                <td>1,3/100 mil (2020)</td>
+                <td>—</td>
+                <td class="col-text">Investimento público direto + patrimônio</td>
+                <td class="col-source">UNESCO/OCDE</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td class="data-table__label col-local">Alemanha</td>
+                <td class="col-text">Política cultural federal/Länder</td>
+                <td class="col-text-wide">~US$ 12 bi/ano (fed.+estados)</td>
+                <td>—</td>
+                <td>0,8/100 mil (2020)</td>
+                <td>—</td>
+                <td class="col-text">Financiamento público + fundações privadas</td>
+                <td class="col-source">UNESCO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-card__scroll-hint" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          Deslize horizontalmente para ver todas as colunas
+        </p>
+      </div>
+
+      <div class="table-card reveal">
+        <div class="table-card__scroll">
+          <table class="data-table data-table--series">
+            <thead>
+              <tr>
+                <th>Indicador Rouanet</th>
+                <th>2016</th>
+                <th>2018</th>
+                <th>2020</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="data-table__label">Renúncia fiscal efetiva (R$ bi)</td>
+                <td>1,3</td>
+                <td>~1,6*</td>
+                <td>2,3</td>
+                <td>2,1</td>
+                <td>2,4</td>
+                <td>3,0</td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Valor autorizado p/ captação (R$ bi)</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>3,4</td>
+                <td>16,7</td>
+                <td>16,9</td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Projetos executados</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>4.939</td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Retorno econômico (R$ por R$ 1)</td>
+                <td>—</td>
+                <td>1,59</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>7,59</td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Empregos gerados/mantidos</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>228.069</td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Público alcançado</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>89,3 mi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="chart-card__footnote" style="margin-top: 0.75rem;">Fonte: SALIC/MinC, Itaú Cultural, FGV (2018 e 2024) · *2018 estimado · Metodologia 2024 ampliada (inclui gastos do público e investimentos atraídos)</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Análise</h4>
+        <p>A Lei Rouanet é um dos temas mais distorcidos da política brasileira recente. A confusão recorrente entre <strong>valor autorizado para captação</strong>, <strong>renúncia fiscal efetiva</strong> e <strong>repasse orçamentário direto</strong> alimenta viralizações que chegam a multiplicar os números reais por cinco ou dez vezes. Em 2024, o recorde de R$ 3 bi em renúncia — primeiro aumento real desde 2011 — representa fração ínfima do orçamento federal e das renúncias fiscais totais, mas movimenta dezenas de bilhões e centenas de milhares de empregos.</p>
+        <p>Desinformação sobre “privilégio de artistas” ignora que o beneficiário imediato do pagamento são <strong>fornecedores da cadeia produtiva</strong> — muitos deles microempresários — e que contrapartidas populares democratizam o acesso. Experiências internacionais reforçam que cultura, integrada a urbanismo e educação, compõe estratégias de <strong>prevenção da violência</strong> com evidências empíricas — especialmente onde o Estado histórico esteve ausente. Combater fake news sobre incentivos culturais exige, como propõe a FGV, <strong>divulgar dados econômicos</strong> com a mesma intensidade com que se espalham memes de indignação.</p>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da seção Incentivos Culturais">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes verificadas</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://dados.cultura.gov.br/" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">MinC / SALIC</span>
+              <span class="section-sources__name">Portal de Dados Abertos da Cultura — renúncia fiscal e projetos</span>
+            </a>
+            <span class="section-sources__data">Confirma: renúncia efetiva R$ 3,0 bi (2024) · teto captação R$ 16,7 bi (2023) · 4.939 projetos executados</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://portal.fgv.br/" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">FGV / OEI</span>
+              <span class="section-sources__name">Pesquisa de Impacto Econômico da Lei Rouanet (2024)</span>
+            </a>
+            <span class="section-sources__data">Confirma: R$ 7,59 movimentados · R$ 1,39 em tributos · 228 mil empregos · 78,5% gastos &lt; R$ 5 mil</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.gov.br/cultura/pt-br" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">Ministério da Cultura</span>
+              <span class="section-sources__name">Economia criativa — participação no PIB (3,11%)</span>
+            </a>
+            <span class="section-sources__data">Confirma: 7,4 mi empregos · PIB cultural ≈ R$ 220 bi (estimativa sobre PIB 2024)</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/20521" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / FBSP</span>
+              <span class="section-sources__name">Atlas da Violência 2026 — taxa nacional de homicídios</span>
+            </a>
+            <span class="section-sources__data">Confirma: 20,1 homicídios/100 mil hab. (Brasil, 2024) no comparativo internacional</span>
+          </li>
+        </ul>
+        <p class="section-sources__note">Casos internacionais (Medellín, Ciudad Juárez) combinam cultura, urbanismo e segurança — associações documentadas, não causalidade única. Verificação cruzada com SciELO, BID e relatórios municipais.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 7. SÍNTESE COMPARATIVA ═══════════════════ -->
+  <section class="section" id="sintese">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Síntese Comparativa 2016–2026</h2>
+        <p class="section-header__subtitle">Panorama consolidado dos indicadores</p>
+      </div>
+
+      <div class="table-card reveal">
+        <div class="table-card__scroll">
+          <table class="data-table data-table--series">
+            <thead>
+              <tr>
+                <th>Indicador</th>
+                <th>2016</th>
+                <th>2024/2025</th>
+                <th>2026</th>
+                <th>Tendência</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="data-table__label">Desemprego</td>
+                <td>&gt;12%</td>
+                <td>5,1% (2025)</td>
+                <td>5,8%</td>
+                <td><span class="trend trend--up">↓ Melhora significativa</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Inflação (IPCA)</td>
+                <td>6,29%</td>
+                <td>4,52% (2020)</td>
+                <td>4,64% (12m)</td>
+                <td><span class="trend trend--stable">→ Controlada</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Homicídios dolosos</td>
+                <td>62.517</td>
+                <td>42.590 (2024)</td>
+                <td>—</td>
+                <td><span class="trend trend--up">↓ -31,9%</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Homicídios por arma de fogo</td>
+                <td>71,1%</td>
+                <td>70% (2024)</td>
+                <td>—</td>
+                <td><span class="trend trend--down">→ Estagnado em patamar alto</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Bolsa Família</td>
+                <td>—</td>
+                <td>18,66 mi (2025)</td>
+                <td>~19 mi</td>
+                <td><span class="trend trend--up">↑ Retomada</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Famílias endividadas</td>
+                <td>—</td>
+                <td>—</td>
+                <td>81,6%</td>
+                <td><span class="trend trend--down">↑ Recorde negativo</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Resultado primário</td>
+                <td>—</td>
+                <td>Déficit R$ 61,7 bi</td>
+                <td>—</td>
+                <td><span class="trend trend--down">→ Atenção</span></td>
+              </tr>
+              <tr>
+                <td class="data-table__label">Renúncia Lei Rouanet</td>
+                <td>R$ 1,3 bi</td>
+                <td>R$ 3,0 bi (2024)</td>
+                <td>Teto R$ 2,9 bi</td>
+                <td><span class="trend trend--up">↑ Retorno recorde</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Temas Adicionais -->
+      <h3 class="subsection-title reveal">Temas Adicionais</h3>
+      <div class="grid grid--3 reveal">
+        <div class="additional-card">
+          <h4 class="additional-card__title">Segurança Pública</h4>
+          <ul>
+            <li>Menor taxa de homicídios em <strong>11 anos</strong> — <strong>42.590</strong> mortes registradas em 2024</li>
+            <li>Homicídios dolosos: <strong>-31,9%</strong> (2016→2024, total nacional)</li>
+            <li>Homicídios ocultos cresceram <strong>88%</strong>, indicando subnotificação</li>
+          </ul>
+        </div>
+        <div class="additional-card">
+          <h4 class="additional-card__title">Violência contra a Mulher</h4>
+          <ul>
+            <li>2024: <strong>3.642</strong> homicídios de mulheres; <strong>1.492</strong> feminicídios (recorde FBSP)</li>
+            <li>2025: <strong>1.568</strong> feminicídios (+4,7%) — violência de gênero fora da tendência de queda</li>
+            <li><strong>47%</strong> dos homicídios femininos com arma de fogo; <strong>67,5%</strong> das vítimas eram negras</li>
+          </ul>
+        </div>
+        <div class="additional-card">
+          <h4 class="additional-card__title">Incentivos Culturais</h4>
+          <ul>
+            <li>2024: <strong>R$ 25,7 bi</strong> movimentados; <strong>228 mil</strong> empregos; retorno de <strong>R$ 7,59</strong> por R$ 1</li>
+            <li>Renúncia efetiva: <strong>R$ 3 bi</strong> — não R$ 16 bi (valor autorizado p/ captação)</li>
+            <li><strong>78,5%</strong> dos gastos abaixo de R$ 5 mil; economia criativa = <strong>3,11%</strong> do PIB</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da síntese comparativa">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes consolidadas da síntese</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/20521" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / FBSP · IBGE · BCB · MDS · CNC · MinC</span>
+              <span class="section-sources__name">Índice de fontes oficiais por seção — ver blocos acima</span>
+            </a>
+            <span class="section-sources__data">Todos os indicadores da tabela síntese foram conferidos contra as publicações listadas em cada seção</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 8. CONCLUSÃO ═══════════════════ -->
+  <section class="section section--conclusion" id="conclusao">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Conclusão e Recomendações</h2>
+        <p class="section-header__subtitle">Síntese do que os dados oficiais mostram — e como ler notícias sem cair em armadilhas</p>
+      </div>
+
+      <div class="analysis-box reveal">
+        <h4 class="analysis-box__title">Leitura geral do período 2016–2026</h4>
+        <p>Os dados oficiais desmontam narrativas simplistas dos dois lados. O Brasil <strong>avançou</strong> em emprego (desemprego de 12%+ para 5,1% em 2025), reduziu homicídios dolosos em <strong>31,9%</strong> entre 2016 e 2024, manteve a inflação dentro da meta e regulou um mercado de apostas que movimenta bilhões. Ao mesmo tempo, <strong>persistem alertas estruturais</strong>: feminicídios em recorde (1.568 em 2025), endividamento familiar no patamar mais alto da série (81,6%), dívida pública em 78,7% do PIB e subnotificação crescente de homicídios por mortes com causa indeterminada (+88% entre 2023 e 2024).</p>
+        <p>A desinformação mais eficaz não inventa números do zero — ela <strong>mistura recortes, confunde conceitos</strong> (captação autorizada vs. renúncia efetiva; inadimplência vs. endividamento; homicídios registrados vs. estimados) e ignora metodologias distintas (SIM vs. boletins de ocorrência). Este relatório buscou confrontar cada narrativa recorrente com a fonte primária correspondente.</p>
+      </div>
+
+      <div class="conclusions-grid">
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">1</span>
+          <h3>Violência e armas</h3>
+          <p>Homicídios caíram de <strong>62.517</strong> (2016) para <strong>42.590</strong> (2024), mas a taxa de <strong>20,1/100 mil</strong> permanece elevada e ~<strong>70%</strong> dos casos envolvem arma de fogo. Mais armas não se correlacionam com menos violência nos dados nacionais.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">2</span>
+          <h3>Feminicídio</h3>
+          <p>Enquanto a violência letal geral recua, os feminicídios tipificados <strong>subiram 60,6%</strong> entre 2016 e 2024 (929 → 1.492) e atingiram <strong>1.568</strong> em 2025. É um fenômeno distinto, com perfil doméstico e letalidade por arma branca.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">3</span>
+          <h3>Programas sociais</h3>
+          <p>O Bolsa Família atende ~<strong>19 milhões</strong> de famílias (abr/2026), com impacto documentado na redução da pobreza (IPEA). Não há evidência de que transferência de renda incentive criminalidade — ao contrário, reduz fatores de risco estruturais.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">4</span>
+          <h3>Economia e emprego</h3>
+          <p>O desemprego atingiu <strong>5,1%</strong> em 2025 (menor da série PNAD, desde 2012). A inflação ficou em <strong>4,26%</strong> no ano, mas a Selic a <strong>14,50%</strong> mantém o crédito caro — contraste que fake news costumam omitir.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">5</span>
+          <h3>Dívida pública</h3>
+          <p>A DBGG fechou 2025 em <strong>78,7% do PIB</strong> (R$ 10 tri). O déficit primário nominal foi de <strong>R$ 61,7 bi</strong>. O endividamento é alto, mas comparável a pares internacionais — o diferencial brasileiro está no <strong>custo dos juros</strong>, não apenas no percentual.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">6</span>
+          <h3>Endividamento e bets</h3>
+          <p><strong>81,6%</strong> das famílias estão endividadas; <strong>84,6%</strong> usam cartão de crédito. O mercado regulado de bets movimentou <strong>R$ 37 bi</strong> em GGR com 25,2 milhões de apostadores — impacto real, mas com magnitudes distintas conforme a fonte (Sigap vs. estudos da CNC).</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">7</span>
+          <h3>Incentivos culturais</h3>
+          <p>A renúncia Rouanet efetiva foi de <strong>R$ 3 bi</strong> em 2024 — não R$ 16 bi (valor de captação autorizada). Para cada R$ 1 renunciado, a FGV estima <strong>R$ 7,59</strong> movimentados e <strong>R$ 1,39</strong> retornando em tributos.</p>
+        </div>
+        <div class="conclusion-card reveal">
+          <span class="conclusion-card__number">8</span>
+          <h3>Subnotificação</h3>
+          <p>Mortes por causa indeterminada bateram recorde em 2024 (<strong>17.207</strong>). Ao incluir homicídios ocultos estimados, a queda real da violência letal pode ser de apenas <strong>0,4%</strong> — não os 30%+ que os registros brutos sugerem.</p>
+        </div>
+      </div>
+
+      <div class="recommendations reveal">
+        <h3 class="recommendations__title">Recomendações para o combate à desinformação</h3>
+        <div class="recommendations__grid">
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Consulte a fonte primária</h4>
+            <p>Antes de compartilhar, abra o link da instituição oficial: <a href="https://www.ibge.gov.br/">IBGE</a>, <a href="https://www.ipea.gov.br/atlasviolencia/">Atlas da Violência</a>, <a href="https://www.bcb.gov.br/">BCB</a>, <a href="https://www.gov.br/tesouronacional/">Tesouro</a>, <a href="https://www.gov.br/mds/">MDS</a>.</p>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h4>Identifique o conceito correto</h4>
+            <p>Pergunte: é renúncia fiscal ou captação autorizada? Endividamento ou inadimplência? Homicídio registrado ou estimado? SIM ou boletim de ocorrência?</p>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+            </div>
+            <h4>Exija recortes comparáveis</h4>
+            <p>Compare o mesmo indicador, na mesma metodologia, no mesmo período. “Pior da história” sem data e sem fonte é sinal de alerta.</p>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Verifique a data de referência</h4>
+            <p>Dados parciais (marcados com * neste relatório) podem mudar. Prefira séries fechadas (anuais) para comparações históricas.</p>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+            </div>
+            <h4>Use os blocos de fontes</h4>
+            <p>Cada seção deste relatório termina com links verificados e o dado que cada fonte confirma. Use como modelo para checar outras afirmações.</p>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h4>Desconfie de certezas absolutas</h4>
+            <p>“O país vai quebrar”, “está tudo ótimo” e “nunca foi tão ruim” raramente correspondem à complexidade dos dados públicos disponíveis.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="section-sources reveal" aria-label="Fontes da conclusão">
+        <div class="section-sources__header">
+          <svg class="section-sources__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <h3 class="section-sources__title">Fontes da conclusão</h3>
+          <span class="section-sources__badge">Dupla checagem · jul/2026</span>
+        </div>
+        <ul class="section-sources__list">
+          <li class="section-sources__item">
+            <a href="https://repositorio.ipea.gov.br/handle/11058/20521" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IPEA / FBSP</span>
+              <span class="section-sources__name">Atlas da Violência 2026 — homicídios, subnotificação e violência de gênero</span>
+            </a>
+            <span class="section-sources__data">Base para conclusões 1, 2 e 8</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/2013-agencia-de-noticias/releases/45908-pnad-continua-trimestral-desocupacao-recua-em-seis-das-27-ufs-no-4-trimestre-de-2025" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">IBGE · BCB</span>
+              <span class="section-sources__name">PNAD Contínua (emprego) · IPCA · Selic</span>
+            </a>
+            <span class="section-sources__data">Base para conclusão 4</span>
+          </li>
+          <li class="section-sources__item">
+            <a href="https://www.bcb.gov.br/content/estatisticas/hist_estatisticasfiscais/202601_Texto_de_estatisticas_fiscais.pdf" target="_blank" rel="noopener noreferrer" class="section-sources__link">
+              <span class="section-sources__org">BCB · Tesouro · CNC · SPA/MF</span>
+              <span class="section-sources__name">Estatísticas fiscais, PEIC e Sigap</span>
+            </a>
+            <span class="section-sources__data">Base para conclusões 5 e 6</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__left">
+          <p class="footer__brand"><span class="footer__brand-icon">◆</span> Relatório Brasil 2016–2026</p>
+          <p class="footer__disclaimer">Este relatório é baseado em dados disponíveis publicamente até julho de 2026. Recomenda-se a consulta direta às bases de dados oficiais para verificação e atualização das informações.</p>
+        </div>
+        <div class="footer__right">
+          <p class="footer__sources-title">Fontes Oficiais</p>
+          <ul class="footer__sources">
+            <li><a href="https://www.ibge.gov.br/" target="_blank" rel="noopener noreferrer">IBGE</a></li>
+            <li><a href="https://www.ipea.gov.br/" target="_blank" rel="noopener noreferrer">IPEA</a></li>
+            <li><a href="https://www.bcb.gov.br/" target="_blank" rel="noopener noreferrer">Banco Central</a></li>
+            <li><a href="https://www.gov.br/tesouronacional/" target="_blank" rel="noopener noreferrer">Tesouro Nacional</a></li>
+            <li><a href="https://www.ipea.gov.br/atlasviolencia/" target="_blank" rel="noopener noreferrer">Atlas da Violência</a></li>
+            <li><a href="https://www.gov.br/mds/" target="_blank" rel="noopener noreferrer">MDS</a></li>
+            <li><a href="https://dados.cultura.gov.br/" target="_blank" rel="noopener noreferrer">MinC / SALIC</a></li>
+            <li><a href="https://publicacoes.forumseguranca.org.br/" target="_blank" rel="noopener noreferrer">FBSP</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 — Dados, Fake News e Realidade</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
