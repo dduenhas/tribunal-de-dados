@@ -89,7 +89,7 @@ function getRevealStaggerDelay(el) {
 
   const siblings = [...parent.children].filter((node) => node.classList.contains('reveal'));
   const index = siblings.indexOf(el);
-  return index > 0 ? index * 150 : 0;
+  return index > 0 ? index * 100 : 0;
 }
 
 function scheduleWhenVisible(el, onVisible, options = {}) {
