@@ -437,11 +437,9 @@ body.nav-open .nav__toggle {
   .nav-menu {
     inset: 0;
     z-index: 1100;
-    opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity var(--duration) var(--ease-out),
-                visibility var(--duration) var(--ease-out);
+    transition: visibility var(--duration) var(--ease-out);
   }
 
   .nav-menu:not(.is-open) .nav__links {
@@ -449,7 +447,6 @@ body.nav-open .nav__toggle {
   }
 
   .nav-menu.is-open {
-    opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
@@ -472,23 +469,31 @@ body.nav-open .nav__toggle {
   }
 
   .nav-menu .nav__links li {
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
 
   .nav-menu .nav__links li:last-child {
     border-bottom: none;
   }
 
-  .nav-menu .nav__links a {
+  .nav-menu .nav__links a,
+  .nav-menu .nav__links a:link,
+  .nav-menu .nav__links a:visited {
     width: 100%;
     justify-content: flex-start;
     gap: var(--space-md);
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     padding: var(--space-md) 0;
-    color: var(--text-primary);
-    opacity: 1;
+    color: #F7F5F0;
+    -webkit-text-fill-color: #F7F5F0;
+  }
+
+  .nav-menu .nav__links a:hover,
+  .nav-menu .nav__links a:focus-visible {
+    color: var(--accent-gold);
+    -webkit-text-fill-color: var(--accent-gold);
   }
 
   .nav-menu .nav__links a::after {
@@ -497,11 +502,10 @@ body.nav-open .nav__toggle {
 
   .nav-menu .nav__links a::before {
     content: '→';
-    color: var(--accent-gold);
-    font-size: var(--text-lg);
+    color: #E0C080;
+    font-size: 1.25rem;
     line-height: 1;
     flex-shrink: 0;
-    opacity: 1;
   }
 }
 
@@ -2203,8 +2207,8 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
   }
 
   .nav-menu .nav__links a {
-    font-size: var(--text-sm);
-    letter-spacing: 0.06em;
+    font-size: 1.0625rem;
+    letter-spacing: 0.04em;
   }
 
   .key-number__value {
