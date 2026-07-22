@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp();
   initCharts();
   initTableDragScroll();
+  initFloatingActions();
 });
 
 
@@ -296,9 +297,18 @@ function observeChartReveal(canvasId, createFn) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
+  const entry = { createFn, rendered: false };
+  chartRegistry.set(canvasId, entry);
+
+  const mountChart = () => {
+    if (entry.rendered) return;
+    entry.rendered = true;
+    createFn();
+  };
+
   const wrap = canvas.closest('.chart-card__canvas-wrap');
   if (!wrap) {
-    createFn();
+    mountChart();
     return;
   }
 
@@ -307,7 +317,7 @@ function observeChartReveal(canvasId, createFn) {
   if (prefersReducedMotion) {
     wrap.classList.remove('chart-canvas-wrap--pending');
     wrap.classList.add('chart-canvas-wrap--revealed');
-    createFn();
+    mountChart();
     return;
   }
 
@@ -317,7 +327,7 @@ function observeChartReveal(canvasId, createFn) {
       observer.disconnect();
       wrap.classList.remove('chart-canvas-wrap--pending');
       wrap.classList.add('chart-canvas-wrap--revealed');
-      requestAnimationFrame(createFn);
+      requestAnimationFrame(mountChart);
       break;
     }
   }, {
@@ -332,6 +342,8 @@ function observeChartReveal(canvasId, createFn) {
 /* ══════════════════════════════════════
    CHARTS
    ══════════════════════════════════════ */
+
+const chartRegistry = new Map();
 
 function initCharts() {
   configureChartDefaults();
@@ -1588,4 +1600,182 @@ function setupTableDragScroll(container) {
   }, true);
 
   container.addEventListener('dragstart', (e) => e.preventDefault());
+}
+
+
+/* ══════════════════════════════════════
+   FLOATING ACTIONS — PDF & SHARE
+   ══════════════════════════════════════ */
+
+const SHARE_TITLE = 'Brasil 2016–2026 — Dados, Fake News e Realidade';
+const SHARE_TEXT = 'Relatório analítico com dados oficiais sobre violência, economia, programas sociais e dívida pública no Brasil.';
+
+function initFloatingActions() {
+  const pdfBtn = document.getElementById('fabPdfBtn');
+  const shareBtn = document.getElementById('fabShareBtn');
+  const sharePanel = document.getElementById('fabSharePanel');
+  const shareWhatsApp = document.getElementById('fabShareWhatsApp');
+  const shareCopy = document.getElementById('fabShareCopy');
+
+  if (!pdfBtn || !shareBtn) return;
+
+  const pageUrl = window.location.href.split('#')[0];
+  const whatsappMessage = `${SHARE_TITLE}\n\n${SHARE_TEXT}\n\n${pageUrl}`;
+  shareWhatsApp.href = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
+  pdfBtn.addEventListener('click', handlePrintPdf);
+  shareBtn.addEventListener('click', () => toggleSharePanel(shareBtn, sharePanel));
+  shareCopy.addEventListener('click', () => copyShareLink(pageUrl));
+
+  document.addEventListener('click', (e) => {
+    if (!sharePanel || sharePanel.hidden) return;
+    if (e.target.closest('.fab-actions')) return;
+    closeSharePanel(shareBtn, sharePanel);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sharePanel && !sharePanel.hidden) {
+      closeSharePanel(shareBtn, sharePanel);
+    }
+  });
+
+  window.addEventListener('afterprint', restoreChartsAfterPrint);
+}
+
+function toggleSharePanel(btn, panel) {
+  const isOpen = !panel.hidden;
+  if (isOpen) {
+    closeSharePanel(btn, panel);
+  } else {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeSharePanel(btn, panel) {
+  panel.hidden = true;
+  btn.setAttribute('aria-expanded', 'false');
+}
+
+async function copyShareLink(url) {
+  try {
+    await navigator.clipboard.writeText(url);
+    showFabToast('Link copiado!');
+  } catch {
+    const input = document.createElement('input');
+    input.value = url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    showFabToast('Link copiado!');
+  }
+}
+
+function showFabToast(message) {
+  const toast = document.getElementById('fabToast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.hidden = false;
+  toast.classList.add('is-visible');
+  clearTimeout(showFabToast._timer);
+  showFabToast._timer = setTimeout(() => {
+    toast.classList.remove('is-visible');
+    toast.hidden = true;
+  }, 2600);
+}
+
+function forceRenderAllCharts() {
+  chartRegistry.forEach((entry) => {
+    if (!entry.rendered) {
+      entry.createFn();
+      entry.rendered = true;
+    }
+  });
+
+  document.querySelectorAll('.chart-card__canvas-wrap--pending').forEach((wrap) => {
+    wrap.classList.remove('chart-canvas-wrap--pending');
+    wrap.classList.add('chart-canvas-wrap--revealed');
+  });
+}
+
+function forEachChart(callback) {
+  document.querySelectorAll('canvas').forEach((canvas) => {
+    const chart = Chart.getChart(canvas);
+    if (chart) callback(chart);
+  });
+}
+
+function applyPrintChartTheme() {
+  forEachChart((chart) => {
+    chart.$printBackup = {
+      color: chart.options.color,
+      legendColor: chart.options.plugins?.legend?.labels?.color,
+      scales: {},
+    };
+
+    chart.options.animation = { duration: 0 };
+    chart.options.color = '#555555';
+
+    if (chart.options.plugins?.legend?.labels) {
+      chart.options.plugins.legend.labels.color = '#333333';
+    }
+
+    Object.entries(chart.options.scales || {}).forEach(([key, scale]) => {
+      chart.$printBackup.scales[key] = {
+        tickColor: scale.ticks?.color,
+        gridColor: scale.grid?.color,
+      };
+      if (scale.ticks) scale.ticks.color = '#555555';
+      if (scale.grid) scale.grid.color = 'rgba(0, 0, 0, 0.08)';
+    });
+
+    chart.update('none');
+  });
+}
+
+function restoreChartsAfterPrint() {
+  forEachChart((chart) => {
+    const backup = chart.$printBackup;
+    if (!backup) return;
+
+    chart.options.color = backup.color;
+    if (chart.options.plugins?.legend?.labels && backup.legendColor !== undefined) {
+      chart.options.plugins.legend.labels.color = backup.legendColor;
+    }
+
+    Object.entries(chart.options.scales || {}).forEach(([key, scale]) => {
+      const saved = backup.scales[key];
+      if (!saved) return;
+      if (scale.ticks && saved.tickColor !== undefined) scale.ticks.color = saved.tickColor;
+      if (scale.grid && saved.gridColor !== undefined) scale.grid.color = saved.gridColor;
+    });
+
+    delete chart.$printBackup;
+    chart.update('none');
+  });
+
+  document.body.classList.remove('is-printing');
+}
+
+async function handlePrintPdf() {
+  const pdfBtn = document.getElementById('fabPdfBtn');
+  if (!pdfBtn || pdfBtn.classList.contains('is-loading')) return;
+
+  pdfBtn.classList.add('is-loading');
+  pdfBtn.setAttribute('aria-busy', 'true');
+
+  try {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    forceRenderAllCharts();
+    applyPrintChartTheme();
+    document.body.classList.add('is-printing');
+
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+    window.print();
+  } finally {
+    pdfBtn.classList.remove('is-loading');
+    pdfBtn.removeAttribute('aria-busy');
+  }
 }

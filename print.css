@@ -1,0 +1,448 @@
+/* ══════════════════════════════════════════════════════════════
+   PRINT / PDF — Brasil 2016–2026
+   Fundo branco · tipografia escura · diagramação limpa
+   ══════════════════════════════════════════════════════════════ */
+
+@page {
+  size: A4;
+  margin: 14mm 12mm 16mm;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html {
+    font-size: 10.5pt;
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #fff !important;
+    color: #1a1a1a !important;
+    line-height: 1.55;
+    overflow: visible !important;
+  }
+
+  /* ── Ocultar UI interativa ── */
+  .skip-link,
+  .nav,
+  .progress-bar,
+  .fab-actions,
+  .fab-panel,
+  .fab-toast,
+  .hero__scroll,
+  .hero__cta,
+  .nav__toggle,
+  .table-card__scroll-hint {
+    display: none !important;
+  }
+
+  /* ── Revelar todo o conteúdo ── */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main,
+  .section,
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  .section {
+    padding: 1.25rem 0 !important;
+    background: #fff !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .section--highlight,
+  .section--conclusion {
+    background: #fff !important;
+  }
+
+  .container {
+    padding: 0 !important;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: auto !important;
+    padding: 1.5rem 0 1.25rem !important;
+    background: #fff !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .hero__overlay {
+    display: none !important;
+  }
+
+  .hero__content {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .hero__kicker {
+    color: #666 !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__title {
+    color: #111 !important;
+    font-size: 1.75rem !important;
+    line-height: 1.15 !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  .hero__title em {
+    color: #333 !important;
+    font-style: italic;
+  }
+
+  .hero__subtitle {
+    color: #444 !important;
+    font-size: 0.95rem !important;
+    max-width: 42ch;
+  }
+
+  .hero__meta {
+    margin-top: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .hero__meta-item {
+    color: #555 !important;
+    font-size: 0.75rem !important;
+    border-color: #ddd !important;
+    background: #f8f8f8 !important;
+  }
+
+  /* ── Tipografia ── */
+  .section-header__title,
+  .chart-card__title,
+  .subsection-title,
+  .analysis-box__title,
+  .factcheck__heading,
+  .recommendations__title,
+  .conclusion-card h3,
+  .footer__title {
+    color: #111 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .section-header__subtitle,
+  .chart-card__subtitle,
+  .data-note,
+  .chart-card__footnote,
+  .section-sources,
+  p,
+  li,
+  td,
+  th {
+    color: #333 !important;
+  }
+
+  .section-header {
+    margin-bottom: 1rem !important;
+    break-after: avoid;
+  }
+
+  .subsection-title {
+    margin: 1.25rem 0 0.5rem !important;
+    font-size: 1rem !important;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+    margin-bottom: 0.5rem;
+  }
+
+  strong {
+    color: #111 !important;
+  }
+
+  a {
+    color: #222 !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .section-sources__link[href^="http"]::after,
+  .footer__sources a[href^="http"]::after {
+    content: " — " attr(href);
+    font-size: 0.6rem;
+    color: #888;
+    word-break: break-all;
+  }
+
+  /* ── Cards e blocos ── */
+  .chart-card,
+  .table-card,
+  .analysis-box,
+  .context-box,
+  .factcheck,
+  .recommendations,
+  .conclusion-card,
+  .program-card,
+  .key-number,
+  .data-highlight__item,
+  .concept-card,
+  .section-sources {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .chart-card,
+  .table-card {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .grid,
+  .grid--2,
+  .grid--3,
+  .data-highlight,
+  .conclusions-grid,
+  .recommendations__grid,
+  .factcheck__cards {
+    display: block !important;
+  }
+
+  .grid > *,
+  .grid--2 > *,
+  .grid--3 > *,
+  .data-highlight > *,
+  .conclusions-grid > *,
+  .recommendations__grid > * {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .chart-card--wide {
+    break-inside: avoid;
+  }
+
+  /* ── Gráficos ── */
+  .chart-card__canvas-wrap,
+  .chart-card__canvas-wrap--short {
+    height: 200px !important;
+    min-height: 200px !important;
+    overflow: visible !important;
+  }
+
+  .chart-card__canvas-wrap--pending canvas,
+  .chart-card__canvas-wrap--revealed canvas,
+  .chart-card__canvas-wrap canvas {
+    opacity: 1 !important;
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+
+  .chart-card__footnote {
+    font-size: 0.65rem !important;
+    color: #666 !important;
+    margin-top: 0.4rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* ── Tabelas ── */
+  .table-card__scroll {
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  .data-table,
+  .data-table.debt-rank-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 0.62rem !important;
+    border-collapse: collapse !important;
+  }
+
+  .debt-rank-table th,
+  .debt-rank-table td,
+  .data-table th,
+  .data-table td {
+    position: static !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    padding: 0.3rem 0.35rem !important;
+    border-bottom: 1px solid #e8e8e8 !important;
+    color: #222 !important;
+  }
+
+  .data-table th,
+  .debt-rank-table th {
+    color: #111 !important;
+    font-size: 0.58rem !important;
+    background: #f5f5f5 !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  .data-table__row--highlight,
+  .debt-rank-table__row--highlight {
+    background: #f9f6f0 !important;
+  }
+
+  .data-table__row--highlight td,
+  .debt-rank-table__row--highlight td {
+    background: #f9f6f0 !important;
+  }
+
+  .data-table__label {
+    color: #111 !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* ── Fact-check ── */
+  .factcheck__card {
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .factcheck__fake,
+  .factcheck__real {
+    background: #fafafa !important;
+    border-color: #e5e5e5 !important;
+  }
+
+  .factcheck__tag--fake {
+    color: #8b3a35 !important;
+    background: #fdf0ef !important;
+  }
+
+  .factcheck__tag--real {
+    color: #2d6a4a !important;
+    background: #eef6f1 !important;
+  }
+
+  /* ── Key numbers & highlights ── */
+  .key-number__value,
+  .data-highlight__number {
+    color: #111 !important;
+  }
+
+  .key-number__label,
+  .data-highlight__text {
+    color: #444 !important;
+  }
+
+  .data-highlight__item--danger {
+    background: #fdf5f4 !important;
+    border-color: #e8d0ce !important;
+  }
+
+  .data-highlight__item--success {
+    background: #f2f8f4 !important;
+    border-color: #cfe0d6 !important;
+  }
+
+  .data-highlight__item--warning {
+    background: #faf6ee !important;
+    border-color: #e8dfc8 !important;
+  }
+
+  /* ── Fontes ── */
+  .section-sources {
+    padding: 0.65rem 0.75rem !important;
+    break-inside: avoid;
+  }
+
+  .section-sources__title {
+    color: #111 !important;
+    font-size: 0.75rem !important;
+  }
+
+  .section-sources__badge {
+    color: #666 !important;
+    border-color: #ddd !important;
+  }
+
+  .section-sources__link {
+    color: #222 !important;
+  }
+
+  .section-sources__data {
+    color: #555 !important;
+    font-size: 0.62rem !important;
+  }
+
+  .source {
+    color: #555 !important;
+  }
+
+  /* ── Conclusão ── */
+  .conclusion-card__number {
+    color: #ccc !important;
+    opacity: 1 !important;
+  }
+
+  .recommendation__icon {
+    color: #666 !important;
+  }
+
+  /* ── Rodapé ── */
+  .footer {
+    background: #fff !important;
+    border-top: 1px solid #ddd !important;
+    padding: 1rem 0 !important;
+    break-inside: avoid;
+  }
+
+  .footer__sources a {
+    color: #333 !important;
+  }
+
+  .footer__bottom p {
+    color: #888 !important;
+  }
+
+  /* ── Quebras de página entre seções principais ── */
+  #violencia,
+  #sociais,
+  #economia,
+  #divida,
+  #endividamento,
+  #cultura,
+  #sintese,
+  #conclusao {
+    break-before: page;
+    page-break-before: always;
+    padding-top: 0.5rem !important;
+  }
+
+  #sumario {
+    break-before: auto;
+    page-break-before: auto;
+  }
+}
