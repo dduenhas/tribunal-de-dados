@@ -180,6 +180,154 @@ function configureChartDefaults() {
   Chart.defaults.plugins.tooltip.boxPadding = 6;
 }
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function chartStagger(ctx, step = 100) {
+  if (ctx.type !== 'data' || ctx.mode !== 'default') return 0;
+  return ctx.dataIndex * step + ctx.datasetIndex * 60;
+}
+
+function entranceAnimation(kind) {
+  if (prefersReducedMotion) return { duration: 0 };
+
+  const presets = {
+    bar: {
+      duration: 1300,
+      easing: 'easeOutQuart',
+      delay: (ctx) => chartStagger(ctx, 140),
+    },
+    barH: {
+      duration: 1400,
+      easing: 'easeOutQuart',
+      delay: (ctx) => chartStagger(ctx, 110),
+    },
+    line: {
+      duration: 1600,
+      easing: 'easeOutQuart',
+      delay: (ctx) => chartStagger(ctx, 65),
+    },
+    doughnut: {
+      animateRotate: true,
+      animateScale: true,
+      duration: 1500,
+      easing: 'easeOutCubic',
+      delay: (ctx) => chartStagger(ctx, 85),
+    },
+  };
+
+  return presets[kind] || presets.bar;
+}
+
+function entranceAnimationsLine() {
+  if (prefersReducedMotion) return {};
+
+  return {
+    y: {
+      type: 'number',
+      easing: 'easeOutQuart',
+      duration: 1700,
+      from: (ctx) => {
+        if (ctx.type === 'data') {
+          const scale = ctx.chart.scales.y;
+          return scale.getPixelForValue(scale.min);
+        }
+      },
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 65 + ctx.datasetIndex * 40 : 0),
+    },
+    tension: {
+      duration: 1700,
+      easing: 'easeOutQuart',
+      from: 0,
+    },
+    radius: {
+      duration: 500,
+      easing: 'easeOutQuart',
+      from: 0,
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 65 + ctx.datasetIndex * 40 + 450 : 0),
+    },
+  };
+}
+
+function entranceAnimationsBarH() {
+  if (prefersReducedMotion) return {};
+
+  return {
+    x: {
+      type: 'number',
+      easing: 'easeOutQuart',
+      duration: 1400,
+      from: 0,
+      delay: (ctx) => (ctx.type === 'data' ? ctx.dataIndex * 110 : 0),
+    },
+  };
+}
+
+function buildChart(ctx, config) {
+  const type = config.type;
+  const isHorizontal = config.options?.indexAxis === 'y';
+  let kind = type;
+  if (type === 'bar' && isHorizontal) kind = 'barH';
+
+  config.options = config.options || {};
+  const customAnimation = config.options.animation;
+  const customAnimations = config.options.animations;
+
+  config.options.animation = {
+    ...entranceAnimation(kind),
+    ...customAnimation,
+  };
+
+  if (type === 'line') {
+    config.options.animations = {
+      ...entranceAnimationsLine(),
+      ...customAnimations,
+    };
+  } else if (kind === 'barH') {
+    config.options.animations = {
+      ...entranceAnimationsBarH(),
+      ...customAnimations,
+    };
+  }
+
+  return new Chart(ctx, config);
+}
+
+function observeChartReveal(canvasId, createFn) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+
+  const wrap = canvas.closest('.chart-card__canvas-wrap');
+  if (!wrap) {
+    createFn();
+    return;
+  }
+
+  wrap.classList.add('chart-canvas-wrap--pending');
+
+  if (prefersReducedMotion) {
+    wrap.classList.remove('chart-canvas-wrap--pending');
+    wrap.classList.add('chart-canvas-wrap--revealed');
+    createFn();
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      observer.disconnect();
+      wrap.classList.remove('chart-canvas-wrap--pending');
+      wrap.classList.add('chart-canvas-wrap--revealed');
+      requestAnimationFrame(createFn);
+      break;
+    }
+  }, {
+    threshold: 0.28,
+    rootMargin: '0px 0px -6% 0px',
+  });
+
+  observer.observe(wrap);
+}
+
 
 /* ══════════════════════════════════════
    CHARTS
@@ -187,25 +335,30 @@ function configureChartDefaults() {
 
 function initCharts() {
   configureChartDefaults();
-  chartHomicidios();
-  chartArmas();
-  chartFeminicidioSerie();
-  chartFeminicidioMeios();
-  chartIPCA();
-  chartSelic();
-  chartDesemprego();
-  chartBolsaFamilia();
-  chartResultadoPrimario();
-  chartEndividamento();
-  chartPerfilDivida();
-  chartApostasMercado();
-  chartApostadoresGasto();
-  chartCoercaoApostas();
-  chartRouanetCaptacao();
-  chartRouanetRetorno();
-  chartRouanetGastos();
-  chartCulturaEscala();
-  chartCulturaViolencia();
+
+  const charts = [
+    ['chartHomicidios', chartHomicidios],
+    ['chartArmas', chartArmas],
+    ['chartFeminicidioSerie', chartFeminicidioSerie],
+    ['chartFeminicidioMeios', chartFeminicidioMeios],
+    ['chartIPCA', chartIPCA],
+    ['chartSelic', chartSelic],
+    ['chartDesemprego', chartDesemprego],
+    ['chartBolsaFamilia', chartBolsaFamilia],
+    ['chartResultadoPrimario', chartResultadoPrimario],
+    ['chartEndividamento', chartEndividamento],
+    ['chartPerfilDivida', chartPerfilDivida],
+    ['chartApostasMercado', chartApostasMercado],
+    ['chartApostadoresGasto', chartApostadoresGasto],
+    ['chartCoercaoApostas', chartCoercaoApostas],
+    ['chartRouanetCaptacao', chartRouanetCaptacao],
+    ['chartRouanetRetorno', chartRouanetRetorno],
+    ['chartRouanetGastos', chartRouanetGastos],
+    ['chartCulturaEscala', chartCulturaEscala],
+    ['chartCulturaViolencia', chartCulturaViolencia],
+  ];
+
+  charts.forEach(([id, fn]) => observeChartReveal(id, fn));
 }
 
 
@@ -214,7 +367,7 @@ const HOMICIDIOS_NACIONAL = { y2016: 62517, y2024: 42590 };
 
 function chartHomicidios() {
   const ctx = document.getElementById('chartHomicidios').getContext('2d');
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['2016', '2024'],
@@ -275,7 +428,7 @@ function chartFeminicidioSerie() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
@@ -343,7 +496,7 @@ function chartFeminicidioMeios() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['Homicídios de mulheres', 'Feminicídios tipificados'],
@@ -404,7 +557,7 @@ function chartFeminicidioMeios() {
 // ── 2. Homicídios por Arma de Fogo ──
 function chartArmas() {
   const ctx = document.getElementById('chartArmas').getContext('2d');
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Arma de fogo (2016)', 'Outros meios (2016)', 'Arma de fogo (2024)', 'Outros meios (2024)'],
@@ -476,7 +629,7 @@ function chartIPCA() {
   const ctx = document.getElementById('chartIPCA').getContext('2d');
   const gradient = createGradient(ctx, COLORS.goldAlpha, 'rgba(196, 162, 101, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', 'Jun/2026*'],
@@ -531,7 +684,7 @@ function chartSelic() {
   const ctx = document.getElementById('chartSelic').getContext('2d');
   const gradient = createGradient(ctx, COLORS.tealAlpha, 'rgba(74, 155, 170, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', 'Jun/2026*'],
@@ -586,7 +739,7 @@ function chartDesemprego() {
   const ctx = document.getElementById('chartDesemprego').getContext('2d');
   const gradient = createGradient(ctx, COLORS.successAlpha, 'rgba(91, 154, 114, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2025 (média)', 'Nov-Jan/26', 'Fev/2026', 'Jun/2026*'],
@@ -648,7 +801,7 @@ function chartBolsaFamilia() {
   const ctx = document.getElementById('chartBolsaFamilia').getContext('2d');
   const gradient = createGradient(ctx, COLORS.goldAlpha, 'rgba(196, 162, 101, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2019', '2022', '2023', '2024', '2025', 'Abr/26'],
@@ -714,7 +867,7 @@ function chartResultadoPrimario() {
   const years = ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'];
   const values = [-154.3, -124.0, -124.4, -94.6, -743.3, -35.9, 59.4, -230.5, -52.8, -61.7];
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: years,
@@ -779,7 +932,7 @@ function chartEndividamento() {
   const ctx = document.getElementById('chartEndividamento').getContext('2d');
   const gradient = createGradient(ctx, COLORS.dangerAlpha, 'rgba(196, 82, 74, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['Mar', 'Abr', 'Mai', 'Jun'],
@@ -840,7 +993,7 @@ function chartEndividamento() {
 function chartPerfilDivida() {
   const ctx = document.getElementById('chartPerfilDivida').getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Cartão de crédito', 'Muitas dívidas', 'Pouco endividadas', 'Outros'],
@@ -892,7 +1045,7 @@ function chartApostasMercado() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['Apostadores\n(milhões)', 'GGR\n(R$ bi)', 'Arrecadação\nfederal (R$ bi)', 'Empresas\nautorizadas', 'Sites ilegais\nbloqueados (mil)'],
@@ -956,7 +1109,7 @@ function chartApostadoresGasto() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Até R$ 50', 'R$ 50–100', 'R$ 100–150', 'R$ 150–200', 'R$ 200–300', 'Acima R$ 300'],
@@ -1018,7 +1171,7 @@ function chartCoercaoApostas() {
     { label: 'Contas bancárias ilegais encerradas', value: 550, unit: '' },
   ];
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: metrics.map(m => m.label),
@@ -1086,7 +1239,7 @@ function chartRouanetCaptacao() {
   const ctx = el.getContext('2d');
   const gradient = createGradient(ctx, COLORS.goldAlpha, 'rgba(196, 162, 101, 0.01)');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'line',
     data: {
       labels: ['2016', '2017*', '2018*', '2019*', '2020', '2021*', '2022', '2023', '2024'],
@@ -1141,7 +1294,7 @@ function chartRouanetRetorno() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['Movimentação na economia', 'Arrecadação tributária', 'Estudo 2018 (referência)'],
@@ -1192,7 +1345,7 @@ function chartRouanetGastos() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'doughnut',
     data: {
       labels: ['Abaixo de R$ 5 mil', 'R$ 5 mil – R$ 10 mil', 'Acima de R$ 10 mil'],
@@ -1247,7 +1400,7 @@ function chartCulturaEscala() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['PIB economia criativa*', 'Movimentação Rouanet', 'Renúncia fiscal', 'Tributos gerados'],
@@ -1304,7 +1457,7 @@ function chartCulturaViolencia() {
   if (!el) return;
   const ctx = el.getContext('2d');
 
-  new Chart(ctx, {
+  buildChart(ctx, {
     type: 'bar',
     data: {
       labels: ['Medellín (pico)', 'Medellín (atual)', 'Ciudad Juárez (pico)', 'Ciudad Juárez (atual)', 'Brasil (2024)'],

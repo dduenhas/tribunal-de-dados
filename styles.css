@@ -820,6 +820,14 @@ img { max-width: 100%; display: block; }
   height: 280px;
   min-height: 280px;
 }
+
+.chart-card__canvas-wrap--pending canvas {
+  opacity: 0;
+}
+
+.chart-card__canvas-wrap--revealed canvas {
+  opacity: 1;
+}
 .chart-card__canvas-wrap--short {
   height: 220px;
 }
