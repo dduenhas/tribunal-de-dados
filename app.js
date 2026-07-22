@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRevealAnimations();
   initCountUp();
   initCharts();
+  initChartResize();
   initTableDragScroll();
   initFloatingActions();
 });
@@ -49,20 +50,39 @@ function initScrollEffects() {
 function initNavigation() {
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
+  const backdrop = document.getElementById('navBackdrop');
+
+  const setMenuOpen = (isOpen) => {
+    links.classList.toggle('open', isOpen);
+    toggle.classList.toggle('is-active', isOpen);
+    backdrop.classList.toggle('is-visible', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    backdrop.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  };
+
+  const closeMenu = () => setMenuOpen(false);
+
+  toggle.addEventListener('click', () => {
+    setMenuOpen(!links.classList.contains('open'));
   });
 
-  // Close mobile menu on link click
-  links.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Abrir menu');
-    });
+  backdrop.addEventListener('click', closeMenu);
+
+  links.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeMenu();
+  });
+
+  window.addEventListener('hashchange', closeMenu);
 }
 
 
@@ -458,6 +478,22 @@ function initCharts() {
   ];
 
   charts.forEach(([id, fn]) => observeChartReveal(id, fn));
+}
+
+function initChartResize() {
+  let ticking = false;
+
+  window.addEventListener('resize', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      document.querySelectorAll('canvas').forEach((canvas) => {
+        const chart = Chart.getChart(canvas);
+        if (chart) chart.resize();
+      });
+      ticking = false;
+    });
+  }, { passive: true });
 }
 
 

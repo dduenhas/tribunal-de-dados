@@ -5,7 +5,8 @@
   "scripts": {
     "deploy": "wrangler pages deploy . --project-name=tribunal-de-dados --branch=main --commit-dirty=true",
     "deploy:preview": "wrangler pages deploy . --project-name=tribunal-de-dados",
-    "verify:sources": "node .cursor/skills/verify-sources/scripts/verify-sources.mjs"
+    "verify:sources": "node .cursor/skills/verify-sources/scripts/verify-sources.mjs",
+    "verify:responsive": "node .cursor/skills/verify-responsive/scripts/audit-responsive.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.84.1"
