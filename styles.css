@@ -1837,6 +1837,11 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
               box-shadow var(--duration) var(--ease-out);
 }
 
+.fab-btn[hidden],
+#fabPdfBtn {
+  display: none !important;
+}
+
 .fab-btn svg {
   flex-shrink: 0;
   color: var(--accent-gold);
