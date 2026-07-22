@@ -224,7 +224,7 @@ img { max-width: 100%; display: block; }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1002;
   padding: var(--space-sm) 0;
   transition: background var(--duration) var(--ease-out),
               border-color var(--duration) var(--ease-out),
@@ -279,7 +279,46 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-menu {
-  display: contents;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+@media (min-width: 1025px) {
+  .nav-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu .nav__links {
+    pointer-events: none;
+    width: fit-content;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--space-lg);
+    min-height: var(--nav-height);
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nav-menu .nav__links li {
+    pointer-events: auto;
+  }
+
+  .nav-menu .nav__links a {
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+  }
+
+  .nav-menu .nav__links a::before {
+    display: none;
+  }
 }
 
 .nav__links li {
@@ -375,7 +414,6 @@ img { max-width: 100%; display: block; }
 body.nav-open {
   overflow: hidden;
   overscroll-behavior: none;
-  touch-action: none;
 }
 
 html.nav-open {
@@ -383,6 +421,11 @@ html.nav-open {
   overscroll-behavior: none;
 }
 
+body.nav-open #main {
+  touch-action: none;
+}
+
+body.nav-open .site-header,
 body.nav-open .nav__brand,
 body.nav-open .nav__toggle {
   z-index: 1102;
@@ -392,8 +435,6 @@ body.nav-open .nav__toggle {
   .nav__toggle { display: flex; }
 
   .nav-menu {
-    display: block;
-    position: fixed;
     inset: 0;
     z-index: 1100;
     opacity: 0;
@@ -403,6 +444,10 @@ body.nav-open .nav__toggle {
                 visibility var(--duration) var(--ease-out);
   }
 
+  .nav-menu:not(.is-open) .nav__links {
+    display: none;
+  }
+
   .nav-menu.is-open {
     opacity: 1;
     visibility: visible;
@@ -410,7 +455,7 @@ body.nav-open .nav__toggle {
   }
 
   .nav-menu .nav__links {
-    position: absolute;
+    position: fixed;
     inset: 0;
     display: flex;
     flex-direction: column;
@@ -423,37 +468,40 @@ body.nav-open .nav__toggle {
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
   }
 
-  .nav__links li {
+  .nav-menu .nav__links li {
     border-bottom: 1px solid var(--border-light);
   }
 
-  .nav__links li:last-child {
+  .nav-menu .nav__links li:last-child {
     border-bottom: none;
   }
 
-  .nav__links a {
+  .nav-menu .nav__links a {
     width: 100%;
     justify-content: flex-start;
     gap: var(--space-md);
-    font-size: var(--text-base);
+    font-size: 1.0625rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     padding: var(--space-md) 0;
     color: var(--text-primary);
+    opacity: 1;
   }
 
-  .nav__links a::after {
+  .nav-menu .nav__links a::after {
     display: none;
   }
 
-  .nav__links a::before {
+  .nav-menu .nav__links a::before {
     content: '→';
     color: var(--accent-gold);
     font-size: var(--text-lg);
     line-height: 1;
     flex-shrink: 0;
+    opacity: 1;
   }
 }
 
@@ -2149,12 +2197,12 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
 
 /* Small phones */
 @media (max-width: 480px) {
-  .nav__links {
+  .nav-menu .nav__links {
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
 
-  .nav__links a {
+  .nav-menu .nav__links a {
     font-size: var(--text-sm);
     letter-spacing: 0.06em;
   }
