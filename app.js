@@ -140,12 +140,16 @@ function initNavigation() {
    MOTION & VIEWPORT HELPERS
    ══════════════════════════════════════ */
 
-const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
-
 function shouldReduceMotion() {
-  // Forçado a false para garantir animações em todos os navegadores/OS
-  return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
+
+/* Monitora mudanças na preferência durante a sessão */
+window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+  if (shouldReduceMotion()) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+});
 
 function isInViewport(el, marginRatio = 0.06) {
   const rect = el.getBoundingClientRect();
