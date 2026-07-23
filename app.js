@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initScrollEffects() {
   const nav = document.getElementById('mainNav');
+  const navMenu = document.getElementById('navMenu');
   const bar = document.getElementById('progressBar');
   let ticking = false;
 
@@ -28,6 +29,7 @@ function initScrollEffects() {
     const scrollY = window.scrollY;
     nav.classList.toggle('nav--scrolled', scrollY > 80);
     nav.classList.toggle('site-header--scrolled', scrollY > 80);
+    if (navMenu) navMenu.classList.toggle('nav-menu--scrolled', scrollY > 80);
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? scrollY / docHeight : 0;
     bar.style.transform = `scaleX(${progress})`;
@@ -141,7 +143,8 @@ function initNavigation() {
 const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function shouldReduceMotion() {
-  return motionMedia.matches;
+  // Forçado a false para garantir animações em todos os navegadores/OS
+  return false;
 }
 
 function isInViewport(el, marginRatio = 0.06) {
@@ -167,8 +170,8 @@ function scheduleWhenVisible(el, onVisible, options = {}) {
   }
 
   const {
-    threshold = 0.06,
-    rootMargin = '0px 0px -4% 0px',
+    threshold = 0,
+    rootMargin = '0px 0px 8% 0px',
   } = options;
 
   let done = false;
@@ -238,9 +241,6 @@ function initRevealAnimations() {
     scheduleWhenVisible(el, () => {
       const delay = getRevealStaggerDelay(el);
       window.setTimeout(() => el.classList.add('visible'), delay);
-    }, {
-      threshold: 0.06,
-      rootMargin: '0px 0px -4% 0px',
     });
   });
 }
@@ -251,41 +251,124 @@ function initRevealAnimations() {
    ══════════════════════════════════════ */
 
 function initCountUp() {
-  const counters = document.querySelectorAll('[data-count]');
+  // ── Key numbers (top cards) ──
+  document.querySelectorAll('.key-numbers').forEach((group) => {
+    const counters = group.querySelectorAll('[data-count]');
+    if (!counters.length) return;
+    scheduleWhenVisible(group, () => {
+      counters.forEach((el) => {
+        const target = parseFloat(el.getAttribute('data-count'));
+        animateCount(el, target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 8% 0px' });
+  });
 
-  counters.forEach((el) => {
-    scheduleWhenVisible(el, () => {
-      const target = parseFloat(el.getAttribute('data-count'));
-      animateCount(el, target);
-    }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -4% 0px',
-    });
+  // ── Data highlights (section stats) ──
+  document.querySelectorAll('.data-highlight').forEach((group) => {
+    const counters = group.querySelectorAll('.data-highlight__number');
+    if (!counters.length) return;
+    scheduleWhenVisible(group, () => {
+      counters.forEach((el) => {
+        const raw = el.textContent.trim();
+        const info = parseCountUpString(raw);
+        if (!info) return;
+        animateCountFlex(el, info);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 8% 0px' });
   });
 }
 
-function animateCount(el, target) {
+/* Parse number strings like "R$ 61,7 bi", "270 mil", "67,5%", "29.870" */
+function parseCountUpString(raw) {
+  const prefixMatch = raw.match(/^R?\$?\s*/);
+  const prefix = prefixMatch ? prefixMatch[0] : '';
+
+  let rest = raw.slice(prefix.length).trim();
+
+  // Extract suffix: %, mil, mi, bi, mil+, mi+, bilhões, milhões
+  let suffix = '';
+  let scale = 1;
+  const suffixMatch = rest.match(/(.*?)\s*(%|bilhões?|bi|milhões?|mi|mil\+|mil)\s*$/i);
+  if (suffixMatch) {
+    rest = suffixMatch[1].trim();
+    const suf = suffixMatch[2].toLowerCase();
+    if (suf === '%') suffix = '%';
+    else if (suf === 'mil' || suf === 'mil+') { suffix = ' mil'; scale = 1000; if (suf.endsWith('+')) suffix += '+'; }
+    else if (suf === 'mi' || suf === 'milhões' || suf === 'milhão') { suffix = ' mi'; scale = 1_000_000; }
+    else if (suf === 'bi' || suf === 'bilhões' || suf === 'bilhão') { suffix = ' bi'; scale = 1_000_000_000; }
+  }
+
+  // Skip ordinals like "3ª"
+  if (/ª|º/.test(rest)) return null;
+
+  // Brazilian format: "29.870" → 29870, "20,1" → 20.1
+  const clean = rest.replace(/\./g, '').replace(',', '.');
+  const num = parseFloat(clean);
+  if (isNaN(num)) return null;
+
+  return { target: num * scale, prefix, suffix, scale, rawDecimal: num % 1 !== 0 };
+}
+
+/* Flexible count-up that handles complex formats */
+function animateCountFlex(el, info) {
+  const { target, prefix, suffix, rawDecimal } = info;
   const duration = shouldReduceMotion() ? 0 : 2800;
   const start = performance.now();
-  const isDecimal = target % 1 !== 0;
+
+  const fmt = (v) => {
+    // Format the numeric portion
+    let display;
+    if (suffix.includes(' mil') || suffix.includes(' mi') || suffix.includes(' bi')) {
+      const scaled = v / info.scale;
+      const decimals = 0; // integer for large units
+      display = scaled.toFixed(scaled % 1 > 0.01 ? 1 : 0).replace('.', ',');
+    } else if (rawDecimal || target % 1 !== 0) {
+      display = v.toFixed(1).replace('.', ',');
+    } else {
+      display = Math.round(v).toLocaleString('pt-BR');
+    }
+    return prefix + display + suffix;
+  };
 
   if (duration === 0) {
-    el.textContent = isDecimal ? target.toFixed(1) : Math.round(target).toLocaleString('pt-BR');
+    el.textContent = fmt(target);
     return;
   }
 
   function update(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const ease = 1 - Math.pow(1 - progress, 3);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    const current = target * ease;
+    el.textContent = fmt(current);
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = fmt(target); // ensure final value
+  }
+  requestAnimationFrame(update);
+}
+
+function animateCount(el, target, suffix = '') {
+  const duration = shouldReduceMotion() ? 0 : 2800;
+  const start = performance.now();
+  const isDecimal = target % 1 !== 0;
+  const fmt = (v) => {
+    const n = isDecimal ? v.toFixed(1) : Math.round(v).toLocaleString('pt-BR');
+    return n + suffix;
+  };
+
+  if (duration === 0) {
+    el.textContent = fmt(target);
+    return;
+  }
+
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out quart — smoother deceleration than cubic
+    const ease = 1 - Math.pow(1 - progress, 4);
     const current = target * ease;
 
-    if (isDecimal) {
-      el.textContent = current.toFixed(1);
-    } else {
-      el.textContent = Math.round(current).toLocaleString('pt-BR');
-    }
+    el.textContent = fmt(current);
 
     if (progress < 1) {
       requestAnimationFrame(update);
@@ -488,8 +571,8 @@ function observeChartReveal(canvasId, createFn) {
   }
 
   scheduleWhenVisible(wrap, revealAndMount, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -2% 0px',
+    threshold: 0,
+    rootMargin: '0px 0px 8% 0px',
   });
 }
 
