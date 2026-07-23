@@ -1,10 +1,13 @@
 # Cache estático — otimizado para Cloudflare Pages free tier
 
 /styles.css
-  Cache-Control: public, max-age=604800, immutable
+  Cache-Control: public, max-age=86400, must-revalidate
 
 /app.js
-  Cache-Control: public, max-age=604800, immutable
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/theme-init.js
+  Cache-Control: public, max-age=86400, must-revalidate
 
 /index.html
   Cache-Control: public, max-age=3600, must-revalidate

@@ -3,13 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      var stored = localStorage.getItem('theme');
-      var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
+  <script src="theme-init.js?v=1"></script>
   <title>Brasil 2016–2026 — Dados, Fake News e Realidade</title>
   <meta name="description" content="Relatório analítico confrontando narrativas de desinformação com dados oficiais sobre violência, economia, programas sociais e dívida pública no Brasil entre 2016 e 2026." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2183,6 +2177,6 @@
   <div class="fab-toast" id="fabToast" role="status" aria-live="polite" hidden></div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20260723"></script>
 </body>
 </html>

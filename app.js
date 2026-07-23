@@ -4,7 +4,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
+  if (typeof initTheme === 'function') initTheme();
   initNavigation();
   initScrollEffects();
   initRevealAnimations();
