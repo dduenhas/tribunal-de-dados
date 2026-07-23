@@ -307,22 +307,29 @@ img { max-width: 100%; display: block; }
   align-items: center;
 }
 
-/* Desktop ≥1025px: nav-menu fixed no topo-direita, alinhado ao header */
+/* Desktop ≥1025px: nav-menu alinhado à coluna central (max 1200px) */
 @media (min-width: 1025px) {
   .nav-menu {
     position: fixed;
     top: var(--space-sm);
-    right: var(--space-lg);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(1200px, 100%);
+    padding: 0 var(--space-lg);
     height: var(--nav-height);
     z-index: 1003;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     margin-left: 0;
     visibility: visible;
-    pointer-events: auto;
+    pointer-events: none;
   }
 
   .nav-menu .nav__links {
+    pointer-events: auto;
+    width: fit-content;
     min-height: var(--nav-height);
     justify-content: flex-end;
   }
