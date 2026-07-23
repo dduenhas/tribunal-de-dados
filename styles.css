@@ -452,39 +452,41 @@ img { max-width: 100%; display: block; }
 .nav__links a:hover { color: var(--accent-gold); }
 .nav__links a:hover::after { transform: scaleX(1); }
 
-/* ── Ações do header (tema + menu mobile) ── */
-.nav__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-left: auto;
-  position: relative;
-  z-index: 1102;
-  flex-shrink: 0;
-}
-
+/* ── Toggle de tema (canto inferior esquerdo) ── */
 .theme-toggle {
+  position: fixed;
+  left: var(--space-lg);
+  bottom: var(--space-xl);
+  z-index: 1000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
-  min-width: 44px;
-  min-height: 44px;
-  padding: 10px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  background: var(--nav-toggle-bg);
+  border-radius: 50%;
+  background: var(--bg-elevated);
   color: var(--text-primary);
   cursor: pointer;
-  transition: border-color var(--duration) var(--ease-out),
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration) var(--ease-out),
+              border-color var(--duration) var(--ease-out),
               background var(--duration) var(--ease-out),
-              color var(--duration) var(--ease-out);
+              color var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
 }
 
 .theme-toggle:hover {
-  border-color: var(--accent-gold-dim);
-  background: var(--bg-card);
+  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+  background: var(--bg-card-hover);
   color: var(--accent-gold);
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
 }
 
 .theme-toggle:focus-visible {
@@ -493,9 +495,10 @@ img { max-width: 100%; display: block; }
 }
 
 .theme-toggle__icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
+  color: var(--accent-gold);
 }
 
 .theme-toggle__icon--sun {
@@ -599,8 +602,7 @@ body.nav-open #main {
 }
 body.nav-open .site-header,
 body.nav-open .nav__brand,
-body.nav-open .nav__toggle,
-body.nav-open .theme-toggle {
+body.nav-open .nav__toggle {
   z-index: 1102;
 }
 
@@ -2462,6 +2464,11 @@ body.is-table-dragging .table-card__scroll--draggable.is-dragging {
 
   .fab-actions {
     right: var(--space-md);
+    bottom: var(--space-md);
+  }
+
+  .theme-toggle {
+    left: var(--space-md);
     bottom: var(--space-md);
   }
 
