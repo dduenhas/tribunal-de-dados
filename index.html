@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <title>Brasil 2016–2026 — Dados, Fake News e Realidade</title>
   <meta name="description" content="Relatório analítico confrontando narrativas de desinformação com dados oficiais sobre violência, economia, programas sociais e dívida pública no Brasil entre 2016 e 2026." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,7 +17,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C4A265'%3E%3Cpath d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/%3E%3Cpolyline points='14,2 14,8 20,8'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=20260722" />
+  <link rel="stylesheet" href="styles.css?v=20260723" />
   <link rel="stylesheet" href="print.css" media="print" />
 </head>
 <body>
@@ -23,9 +30,16 @@
         <span class="nav__brand-icon">◆</span>
         <span class="nav__brand-text">Relatório Brasil</span>
       </a>
-      <button class="nav__toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar tema claro" aria-pressed="false">
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <span class="theme-toggle__label">Alternar tema</span>
+        </button>
+        <button class="nav__toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
   <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>

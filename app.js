@@ -4,6 +4,7 @@
    ══════════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initNavigation();
   initScrollEffects();
   initRevealAnimations();
@@ -13,6 +14,180 @@ document.addEventListener('DOMContentLoaded', () => {
   initTableDragScroll();
   initFloatingActions();
 });
+
+
+/* ══════════════════════════════════════
+   THEME
+   ══════════════════════════════════════ */
+
+const THEME_STORAGE_KEY = 'theme';
+
+function getCurrentTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+
+const CHART_THEMES = {
+  dark: {
+    text: '#A8B0C0',
+    textPrimary: '#E8E6E1',
+    textSubtle: '#6B7385',
+    border: 'rgba(255, 255, 255, 0.06)',
+    grid: 'rgba(255,255,255,0.04)',
+    tooltipBg: 'rgba(26, 32, 48, 0.95)',
+    tooltipBorder: 'rgba(255,255,255,0.1)',
+    pointBorder: '#1A2030',
+  },
+  light: {
+    text: '#4A5568',
+    textPrimary: '#1A1F2B',
+    textSubtle: '#64748B',
+    border: 'rgba(0, 0, 0, 0.08)',
+    grid: 'rgba(0, 0, 0, 0.06)',
+    tooltipBg: 'rgba(255, 255, 255, 0.98)',
+    tooltipBorder: 'rgba(0, 0, 0, 0.1)',
+    pointBorder: '#FFFFFF',
+  },
+};
+
+function getChartTheme() {
+  return CHART_THEMES[getCurrentTheme()];
+}
+
+function chartSurfaceColor() {
+  return getChartTheme().pointBorder;
+}
+
+function getMetaThemeColor() {
+  return getCurrentTheme() === 'light' ? '#F7F5F0' : '#0C0F14';
+}
+
+function ensureThemeMetaTag() {
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.appendChild(meta);
+  }
+  return meta;
+}
+
+function normalizeChartConfig(config) {
+  const theme = getChartTheme();
+
+  config.data?.datasets?.forEach((dataset) => {
+    if (dataset.pointBorderColor === '#1A2030' || dataset.pointBorderColor === '#FFFFFF') {
+      dataset.pointBorderColor = theme.pointBorder;
+    }
+    if (dataset.borderColor === '#1A2030' || dataset.borderColor === '#FFFFFF') {
+      dataset.borderColor = theme.pointBorder;
+    }
+  });
+
+  Object.values(config.options?.scales || {}).forEach((scale) => {
+    if (scale.grid) scale.grid.color = theme.grid;
+    if (scale.ticks) scale.ticks.color = theme.text;
+  });
+
+  if (config.options?.plugins?.legend?.labels) {
+    config.options.plugins.legend.labels.color = theme.text;
+  }
+
+  return config;
+}
+
+function applyChartThemeToCharts() {
+  const theme = getChartTheme();
+  configureChartDefaults();
+
+  forEachChart((chart) => {
+    chart.options.color = theme.text;
+
+    if (chart.options.plugins?.legend?.labels) {
+      chart.options.plugins.legend.labels.color = theme.text;
+    }
+
+    if (chart.options.plugins?.tooltip) {
+      chart.options.plugins.tooltip.backgroundColor = theme.tooltipBg;
+      chart.options.plugins.tooltip.titleColor = theme.textPrimary;
+      chart.options.plugins.tooltip.bodyColor = theme.text;
+      chart.options.plugins.tooltip.borderColor = theme.tooltipBorder;
+    }
+
+    Object.values(chart.options.scales || {}).forEach((scale) => {
+      if (scale.ticks) scale.ticks.color = theme.text;
+      if (scale.grid) scale.grid.color = theme.grid;
+    });
+
+    chart.data.datasets.forEach((dataset) => {
+      if (dataset.pointBorderColor === '#1A2030' || dataset.pointBorderColor === '#FFFFFF') {
+        dataset.pointBorderColor = theme.pointBorder;
+      }
+      if (dataset.borderColor === '#1A2030' || dataset.borderColor === '#FFFFFF') {
+        dataset.borderColor = theme.pointBorder;
+      }
+    });
+
+    chart.update('none');
+  });
+}
+
+function recreateAllCharts() {
+  chartRegistry.forEach((entry, canvasId) => {
+    if (!entry.rendered) return;
+
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const existing = Chart.getChart(canvas);
+    if (existing) existing.destroy();
+
+    entry.rendered = false;
+    entry.createFn();
+    entry.rendered = true;
+  });
+}
+
+function initTheme() {
+  const toggle = document.getElementById('themeToggle');
+  const meta = ensureThemeMetaTag();
+
+  const updateToggle = (theme) => {
+    if (!toggle) return;
+    const isLight = theme === 'light';
+    toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isLight ? 'Ativar tema escuro' : 'Ativar tema claro');
+  };
+
+  const applyTheme = (theme, { animate = false } = {}) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+    meta.content = getMetaThemeColor();
+    updateToggle(theme);
+
+    if (typeof Chart !== 'undefined' && chartRegistry.size > 0) {
+      recreateAllCharts();
+      applyChartThemeToCharts();
+    } else if (typeof Chart !== 'undefined') {
+      configureChartDefaults();
+    }
+
+    if (animate) {
+      document.documentElement.classList.add('theme-transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition');
+      }, 400);
+    }
+  };
+
+  const current = getCurrentTheme();
+  meta.content = getMetaThemeColor();
+  updateToggle(current);
+
+  toggle?.addEventListener('click', () => {
+    const next = getCurrentTheme() === 'light' ? 'dark' : 'light';
+    applyTheme(next, { animate: true });
+  });
+}
 
 
 /* ══════════════════════════════════════
@@ -412,16 +587,17 @@ function createGradient(ctx, color1, color2) {
 }
 
 function configureChartDefaults() {
-  Chart.defaults.color = '#A8B0C0';
-  Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.06)';
+  const theme = getChartTheme();
+  Chart.defaults.color = theme.text;
+  Chart.defaults.borderColor = theme.border;
   Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
   Chart.defaults.font.size = 12;
   Chart.defaults.plugins.legend.labels.usePointStyle = true;
   Chart.defaults.plugins.legend.labels.padding = 20;
-  Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(26, 32, 48, 0.95)';
-  Chart.defaults.plugins.tooltip.titleColor = '#E8E6E1';
-  Chart.defaults.plugins.tooltip.bodyColor = '#A8B0C0';
-  Chart.defaults.plugins.tooltip.borderColor = 'rgba(255,255,255,0.1)';
+  Chart.defaults.plugins.tooltip.backgroundColor = theme.tooltipBg;
+  Chart.defaults.plugins.tooltip.titleColor = theme.textPrimary;
+  Chart.defaults.plugins.tooltip.bodyColor = theme.text;
+  Chart.defaults.plugins.tooltip.borderColor = theme.tooltipBorder;
   Chart.defaults.plugins.tooltip.borderWidth = 1;
   Chart.defaults.plugins.tooltip.cornerRadius = 8;
   Chart.defaults.plugins.tooltip.padding = 12;
@@ -510,6 +686,8 @@ function entranceAnimationsBarH() {
 }
 
 function buildChart(ctx, config) {
+  normalizeChartConfig(config);
+
   const type = config.type;
   const isHorizontal = config.options?.indexAxis === 'y';
   let kind = type;
@@ -875,16 +1053,17 @@ function chartArmas() {
       id: 'centerText',
       afterDraw(chart) {
         const { ctx, width, height } = chart;
+        const theme = getChartTheme();
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#E8E6E1';
+        ctx.fillStyle = theme.textPrimary;
         ctx.font = "600 24px 'JetBrains Mono', monospace";
         ctx.fillText('~70%', width / 2, height / 2 - 10);
-        ctx.fillStyle = '#A8B0C0';
+        ctx.fillStyle = theme.text;
         ctx.font = "400 11px 'Source Sans 3', system-ui, sans-serif";
         ctx.fillText('arma de fogo', width / 2, height / 2 + 14);
-        ctx.fillStyle = '#6B7385';
+        ctx.fillStyle = theme.textSubtle;
         ctx.font = "400 10px 'JetBrains Mono', monospace";
         ctx.fillText('2016 (ext.) · 2024 (int.)', width / 2, height / 2 + 32);
         ctx.restore();
@@ -911,7 +1090,7 @@ function chartIPCA() {
         borderColor: COLORS.gold,
         borderWidth: 2.5,
         pointBackgroundColor: COLORS.gold,
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 8,
@@ -966,7 +1145,7 @@ function chartSelic() {
         borderColor: COLORS.teal,
         borderWidth: 2.5,
         pointBackgroundColor: COLORS.teal,
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 8,
@@ -1023,7 +1202,7 @@ function chartDesemprego() {
         pointBackgroundColor: (ctx) => {
           return ctx.dataIndex === 1 ? '#FFD700' : COLORS.success;
         },
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: (ctx) => ctx.dataIndex === 1 ? 8 : 5,
         pointHoverRadius: 10,
@@ -1083,7 +1262,7 @@ function chartBolsaFamilia() {
         borderColor: COLORS.gold,
         borderWidth: 2.5,
         pointBackgroundColor: COLORS.gold,
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 8,
@@ -1216,7 +1395,7 @@ function chartEndividamento() {
         pointBackgroundColor: (ctx) => {
           return ctx.dataIndex >= 2 ? '#FF6B6B' : COLORS.danger;
         },
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: (ctx) => ctx.dataIndex >= 2 ? 7 : 5,
         pointHoverRadius: 10,
@@ -1275,7 +1454,7 @@ function chartPerfilDivida() {
           COLORS.teal,
           COLORS.slateAlpha,
         ],
-        borderColor: '#1A2030',
+        borderColor: chartSurfaceColor(),
         borderWidth: 3,
         hoverOffset: 8,
       }]
@@ -1393,7 +1572,7 @@ function chartApostadoresGasto() {
           COLORS.dangerAlpha,
           COLORS.danger,
         ],
-        borderColor: '#1A2030',
+        borderColor: chartSurfaceColor(),
         borderWidth: 3,
         hoverOffset: 8,
       }]
@@ -1521,7 +1700,7 @@ function chartRouanetCaptacao() {
         borderColor: COLORS.gold,
         borderWidth: 2.5,
         pointBackgroundColor: COLORS.gold,
-        pointBorderColor: '#1A2030',
+        pointBorderColor: chartSurfaceColor(),
         pointBorderWidth: 2,
         pointRadius: 5,
         tension: 0.35,
@@ -1622,7 +1801,7 @@ function chartRouanetGastos() {
       datasets: [{
         data: [78.5, 11.5, 10],
         backgroundColor: [COLORS.teal, COLORS.gold, COLORS.slateAlpha],
-        borderColor: '#1A2030',
+        borderColor: chartSurfaceColor(),
         borderWidth: 3,
         hoverOffset: 8,
       }]
@@ -1648,13 +1827,14 @@ function chartRouanetGastos() {
       id: 'gastosCenter',
       afterDraw(chart) {
         const { ctx, width, height } = chart;
+        const theme = getChartTheme();
         ctx.save();
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#E8E6E1';
+        ctx.fillStyle = theme.textPrimary;
         ctx.font = "600 22px 'JetBrains Mono', monospace";
         ctx.fillText('78,5%', width / 2, height / 2 - 8);
-        ctx.fillStyle = '#A8B0C0';
+        ctx.fillStyle = theme.text;
         ctx.font = "400 10px 'Source Sans 3', system-ui, sans-serif";
         ctx.fillText('< R$ 5 mil', width / 2, height / 2 + 12);
         ctx.restore();
